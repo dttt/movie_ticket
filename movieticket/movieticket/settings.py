@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'south',
     'movie',
     'facility',
+    'users',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -89,3 +90,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../files'))
 MEDIA_URL = 'https://localhost:8000/files/'
+
+AUTH_USER_MODEL = 'users.CustomUser'

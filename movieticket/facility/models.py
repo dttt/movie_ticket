@@ -3,6 +3,10 @@
 from django.db import models
 
 
+class City(models.Model):
+    name = models.CharField("", max_length=50)
+
+
 class MovieTheater(models.Model):
     """Movie theater model"""
     name = models.CharField("Tên rạp chiếu", max_length=100)
