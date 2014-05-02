@@ -36,7 +36,7 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.CharField(
-        verbose_name="",
+        verbose_name="email",
         max_length=255,
         unique=True,
     )
@@ -66,5 +66,5 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return self.email
 
     class Meta:
-        verbose_name = ""
-        verbose_name_plural = ""
+        verbose_name = "User"
+        verbose_name_plural = "Users"
