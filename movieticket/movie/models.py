@@ -74,7 +74,7 @@ class Movie(models.Model):
     """docstring for Movie"""
     name = models.CharField("Tên phim", max_length=255)
     trailer = models.TextField("Trailer của phim")
-    poster = models.ImageField("Poster của phim")
+    poster = models.ImageField("Poster của phim", upload_to="images/posters")
     summary = models.TextField("Tóm tắt phim")
     length = models.IntegerField("Độ dài phim")
     genre = models.ManyToManyField(Genre, verbose_name="Thể loại")
