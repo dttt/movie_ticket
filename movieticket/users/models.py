@@ -5,8 +5,6 @@ from django.contrib.auth.models import (
     PermissionsMixin, AbstractBaseUser, BaseUserManager)
 from django.utils import timezone
 
-from facility.models import City
-
 
 class CustomUserManager(BaseUserManager):
 
@@ -30,6 +28,8 @@ class CustomUserManager(BaseUserManager):
     def create_superuser(self, email, password=None):
         user = self.create_user(email, password=password)
         user.is_staff = True
+        user.is_superuser = True
+        user.is_active = True
         user.save(using=self._db)
         return user
 

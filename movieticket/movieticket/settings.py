@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'movie',
     'facility',
     'users',
+    'static_pages',
 )
 
 MIDDLEWARE_CLASSES = (
