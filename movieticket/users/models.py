@@ -5,6 +5,10 @@ from django.contrib.auth.models import (
     PermissionsMixin, AbstractBaseUser, BaseUserManager)
 from django.utils import timezone
 
+EMAIL_EXISTED_ERROR = 'Email nay da duoc su dung.'
+REQUIRED_ERROR = 'Khong the bo trong.'
+TOO_LONG_ERROR = 'Du lieu nhap qua dai.'
+
 
 class CustomUserManager(BaseUserManager):
 
@@ -41,13 +45,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         unique=True,
     )
 
-    name = models.CharField("", max_length=100)
-    address = models.CharField("", max_length=255)
-    card_id = models.CharField("", max_length=20)
-    tel = models.CharField("", max_length=20)
+    name = models.CharField("Ten", max_length=100)
+    address = models.CharField("Dia chi", max_length=255, blank=True)
+    card_id = models.CharField("CMND hoac bang lai", max_length=20)
+    tel = models.CharField("So dien thoai", max_length=20)
     #city = models.ForeignKey(City, verbose_name="")
-    date_of_birth = models.DateField("")
-    date_joined = models.DateTimeField("", default=timezone.now())
+    date_of_birth = models.DateField("Ngay sinh", blank=True)
+    date_joined = models.DateTimeField("Ngay lap", default=timezone.now())
 
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)

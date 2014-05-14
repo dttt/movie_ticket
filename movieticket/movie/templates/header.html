@@ -1,0 +1,23 @@
+<!-- Navigation toolbar -->
+<nav role="navigation" class="navbar navbar-inverse navbar-static-top">
+<div class="container">
+    <div class="navbar-header">
+        <button type="button" data-target="#nav-header" data-toggle="collapse" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        {% load staticfiles %}
+        <a href="{% url 'home' %}" class="navbar-brand">
+            <img src="" alt="Cinema logo">
+        </a>
+    </div>
+    <div id="nav-header" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'users:login' %}">Login</a></li>
+            <li><a href="{% url 'users:signup' %}">Sign up</a></li>
+        </ul>
+    </div>
+</div>
+</nav>

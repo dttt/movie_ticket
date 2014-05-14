@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from django.utils import timezone
 from django.db import models
 
 
@@ -31,3 +32,19 @@ class CinemaRoom(models.Model):
     class Meta:
         verbose_name = "Rạp"
         verbose_name_plural = "Các rạp"
+
+
+class New(models.Model):
+    """Chua cac tin moi"""
+    title = models.CharField("Tieu de cua tin", max_length=255)
+    text = models.TextField("Noi dung chinh cua tin")
+    image = models.ImageField("Anh dai dien cua tin", upload_to="images/news")
+    created_at = models.DateTimeField("Ngay khoi tao", default=timezone.now())
+
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = "Tin tuc"
+        verbose_name_plural = "Cac tin tuc"
