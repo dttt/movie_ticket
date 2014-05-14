@@ -87,9 +87,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../files'))
-MEDIA_URL = 'https://localhost:8000/files/'
+STATIC_ROOT = os.path.abspath(
+    os.path.join(BASE_DIR, '../media_files/static_files'))
 
+# Media files
+MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../media_files'))
+MEDIA_URL = 'https://localhost:8000/media_files/'
+
+# Custom authentication model
 AUTH_USER_MODEL = 'users.CustomUser'
