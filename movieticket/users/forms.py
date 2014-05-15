@@ -1,4 +1,5 @@
 import floppyforms as forms
+#from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Reset
 
@@ -7,7 +8,10 @@ from users.models import CustomUser
 
 
 class SignUpForm(forms.ModelForm):
-    password = forms.CharField(label="Password", widget=forms.PasswordInput)
+    password = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput,
+    )
     password_confirmation = forms.CharField(
         label="Password confirmation", widget=forms.PasswordInput)
 
@@ -35,14 +39,19 @@ class SignUpForm(forms.ModelForm):
         self.fields['password'].error_message = Message.REQUIRED
         self.fields['password_confirmation'].error_message = Message.REQUIRED
 
-
     def clean(self):
         input_data = super(SignUpForm, self).clean()
-        password1 = input_data.get('password')
-        password2 = input_data.get('password_confirmation')
+        password1 = input_data['password']
+        password2 = input_data['password_confirmation']
 
-        if password1 and password2 and password1 != password2:
-            raise forms.ValidationError("Mat khau khong trung.")
+        if password1 and password2:
+            # Validate password min length
+            length = len(str(password1))
+            if length < 6 or length > 20:
+                raise forms.ValidationError(Message.PASSWORD_LENGTH_NOT_VALID)
+            # Validate password confirmation
+            if password1 != password2:
+                raise forms.ValidationError(Message.PASSWORD_NOT_MATCH)
 
         return input_data
 
@@ -53,6 +62,7 @@ class SignUpForm(forms.ModelForm):
             'address', 'card_id', 'tel', 'date_of_birth'
         }
         widgets = {
-            #'email': forms.EmailInput,
-            'date_of_birth': forms.DateInput,
+            'date_of_birth': forms.DateInput(attrs={
+                'class': 'datepicker',
+            }),
         }

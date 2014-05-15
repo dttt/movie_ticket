@@ -1,8 +1,25 @@
 {% extends 'base.html' %}
 
+{% load staticfiles %}
+
 {% block title_text %}Dang ky{% endblock %}
+
+{% block css_link %}
+    {{ block.super }}
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+{% endblock %}
 
 {% block main_content %}
     {% load crispy_forms_tags %}
     {% crispy form %}
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.datepicker').datepicker({ dateFormat: "dd/mm/yy" });
+        });
+    </script>
 {% endblock %}
