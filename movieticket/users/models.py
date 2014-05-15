@@ -50,7 +50,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     card_id = models.CharField("CMND hoac bang lai", max_length=20)
     tel = models.CharField("So dien thoai", max_length=20)
     #city = models.ForeignKey(City, verbose_name="")
-    date_of_birth = models.DateField("Ngay sinh", blank=True)
+    date_of_birth = models.DateField("Ngay sinh", blank=True, null=True)
     date_joined = models.DateTimeField("Ngay lap", default=timezone.now())
 
     is_staff = models.BooleanField(default=False)
