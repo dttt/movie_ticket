@@ -100,7 +100,7 @@ STATIC_ROOT = os.path.abspath(
 
 # Media files
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../media_files'))
-MEDIA_URL = 'https://localhost:8000/media_files/'
+MEDIA_URL = 'http://localhost:8000/media_files/'
 
 # Custom authentication model
 AUTH_USER_MODEL = 'users.CustomUser'

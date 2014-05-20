@@ -2,5 +2,7 @@
 
 {% block title_text %}Home{% endblock %}
 {% block main_content %}
-    {% include 'news.html' %}
+    {% if news %}
+        {% include 'news.html' %}
+    {% endif %}
 {% endblock %}
