@@ -5,7 +5,7 @@ import floppyforms as forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Reset
 
-from helper.validate import Message
+from helper.misc import Message
 from users.models import CustomUser
 
 

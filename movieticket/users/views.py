@@ -1,5 +1,10 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
+from django.contrib.auth import authenticate, login, logout
+
+from helper.misc import Message
 
 from users.forms import SignUpForm, LoginForm
 from users.models import CustomUser
@@ -24,9 +29,36 @@ def signup(request):
     else:
         form = SignUpForm()
 
+    #if request.user.is_authenticated:
+    #    return redirect(reverse('home'))
+
     return render(request, 'signup.html', {"form": form})
 
 
-def login(request):
+def signin(request):
     form = LoginForm()
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(username=email, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect(reverse('home'))
+        else:
+            errors = {Message.EMAIL_PASSWORD_NOT_MATCH}
+            return render(
+                request,
+                'login.html',
+                {"form": form, "errors": errors}
+            )
+
+    #if request.user.is_authenticated:
+    #    return redirect(reverse('home'))
+
     return render(request, 'login.html', {"form": form})
+
+
+def signout(request):
+    logout(request)
+    return redirect(reverse('home'))

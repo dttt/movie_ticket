@@ -3,6 +3,7 @@
 {% block title_text %}Đăng nhập{% endblock %}
 
 {% block main_content %}
+    {% include 'errors.html' %}
     {% load crispy_forms_tags %}
     {% crispy form %}
 {% endblock %}

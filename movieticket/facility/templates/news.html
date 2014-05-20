@@ -1,0 +1,44 @@
+{% load news_index %}
+
+<div id="news" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+    <ol class="carousel-indicators">
+        {% for new in news %}
+            {% if new|index == 0 %}
+                <li data-target="#news" data-slide-to="{{ new|index }}" class="active"></li>
+            {% else %}
+                <li data-target="#news" data-slide-to="{{ new|index }}"></li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+    <div class="carousel-inner">
+        {% for new in news %}
+            {% if forloop.counter == 1 %}
+                <div class="active item">
+                    <a href="#">
+                        <img src="{{ new.image.url }}" alt="{{ new.title }}">
+                    </a>
+                </div>
+            {% else %}
+                <div class="item">
+                    <a href="#">
+                        <img src="{{ new.image.url }}" alt="{{ new.title }}">
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <a class="carousel-control left" href="#news" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="carousel-control right" href="#news" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+<style type="text/css">
+.item{
+    background: #333;
+    text-align: center;
+    height: 300px !important;
+}
+</style>
