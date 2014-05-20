@@ -19,7 +19,6 @@ class Migration(SchemaMigration):
             ('address', self.gf('django.db.models.fields.CharField')(max_length=255)),
             ('card_id', self.gf('django.db.models.fields.CharField')(max_length=20)),
             ('tel', self.gf('django.db.models.fields.CharField')(max_length=20)),
-            ('city', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['facility.City'])),
             ('date_of_birth', self.gf('django.db.models.fields.DateField')()),
             ('date_joined', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
             ('is_staff', self.gf('django.db.models.fields.BooleanField')(default=False)),

@@ -25,7 +25,7 @@ class SignUpForm(forms.ModelForm):
         # Change Form layout
         self.helper.form_action = ''
         self.helper.form_method = 'post'
-        #self.helper.html5_required = True
+        self.helper.html5_required = True
         # Change fields position: required go first
         self.helper.layout = Layout(
             'email', 'password', 'password_confirmation',

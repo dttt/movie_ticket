@@ -5,10 +5,6 @@ from django.contrib.auth.models import (
     PermissionsMixin, AbstractBaseUser, BaseUserManager)
 from django.utils import timezone
 
-EMAIL_EXISTED_ERROR = 'Email nay da duoc su dung.'
-REQUIRED_ERROR = 'Khong the bo trong.'
-TOO_LONG_ERROR = 'Du lieu nhap qua dai.'
-
 
 class CustomUserManager(BaseUserManager):
 
@@ -54,7 +50,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField("Ngay lap", default=timezone.now())
 
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELD = []
