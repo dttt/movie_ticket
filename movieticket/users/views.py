@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 
-from users.forms import SignUpForm
+from users.forms import SignUpForm, LoginForm
 from users.models import CustomUser
 
 
@@ -28,4 +28,5 @@ def signup(request):
 
 
 def login(request):
-    pass
+    form = LoginForm()
+    return render(request, 'login.html', {"form": form})

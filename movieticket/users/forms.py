@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import floppyforms as forms
 #from django import forms
 from crispy_forms.helper import FormHelper
@@ -13,7 +15,7 @@ class SignUpForm(forms.ModelForm):
         widget=forms.PasswordInput,
     )
     password_confirmation = forms.CharField(
-        label="Password confirmation", widget=forms.PasswordInput)
+        label="Lập lại password", widget=forms.PasswordInput)
 
     def __init__(self, *args, **kwargs):
         super(SignUpForm, self).__init__(*args, **kwargs)
@@ -23,14 +25,14 @@ class SignUpForm(forms.ModelForm):
         self.helper = FormHelper(self)
 
         # Change Form layout
-        self.helper.form_action = ''
+        #self.helper.form_action = ''
         self.helper.form_method = 'post'
         self.helper.html5_required = True
         # Change fields position: required go first
         self.helper.layout = Layout(
             'email', 'password', 'password_confirmation',
             'name', 'card_id', 'tel')
-        self.helper.add_input(Submit('submit', 'Tao tai khoan'))
+        self.helper.add_input(Submit('submit', 'Tạo tài khoản'))
         self.helper.add_input(Reset('reset', 'Reset'))
 
         # Add Vietnamese validation's errors
@@ -66,3 +68,17 @@ class SignUpForm(forms.ModelForm):
                 'class': 'datepicker',
             }),
         }
+
+
+class LoginForm(forms.Form):
+    email = forms.EmailField(label="Email", widget=forms.EmailInput)
+    password = forms.CharField(label="Password", widget=forms.PasswordInput)
+
+    def __init__(self, *args, **kwargs):
+        super(LoginForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+
+        self.helper.form_method = 'post'
+        self.helper.html5_required = True
+        self.helper.layout = Layout('email', 'password')
+        self.helper.add_input(Submit('submit', 'Login'))
