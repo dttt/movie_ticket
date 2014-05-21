@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+from facility.models import MovieTheater
+
+
+def theaterIndex(request):
+    theaters = MovieTheater.objects.all()
+    return render(request, 'theaters.html', {"theaters": theaters})

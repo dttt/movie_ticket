@@ -1,0 +1,24 @@
+[
+{
+  "pk": 1, 
+  "model": "news.new", 
+  "fields": {
+    "text": "dsfsfdsfs", 
+    "image": "images/news/new1.jpg", 
+    "created_at": "2014-05-21T04:32:39Z", 
+    "slug": "new-1", 
+    "title": "New 1"
+  }
+},
+{
+  "pk": 2, 
+  "model": "news.new", 
+  "fields": {
+    "text": "<p>NEW 2, test <strong>CKEDITOR</strong></p>\r\n\r\n<p><img alt=\"\" src=\"/media_files/uploads/2014/05/21/new_line_cinema_logo_3577.gif\" style=\"width: 250px; height: 255px;\" /></p>\r\n\r\n<p><u>sdfsfs</u></p>\r\n", 
+    "image": "images/news/new2.jpg", 
+    "created_at": "2014-05-21T06:46:25Z", 
+    "slug": "new-2", 
+    "title": "New 2"
+  }
+}
+]

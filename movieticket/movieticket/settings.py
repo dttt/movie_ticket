@@ -44,7 +44,8 @@ INSTALLED_APPS = (
     'users',
     'crispy_forms',
     'floppyforms',
-    #'static_pages',
+    'news',
+    'ckeditor',
 )
 
 SITE_ID = 1
@@ -106,3 +107,5 @@ MEDIA_URL = '/media_files/'
 AUTH_USER_MODEL = 'users.CustomUser'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+CKEDITOR_UPLOAD_PATH = "uploads/"

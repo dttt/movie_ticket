@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+<div id="{{ theater.id }}">
+<h1>{{ theater.name }}</h1>
+<p>{{ theater.address }}</p>
+<p>sfdsfs</p>
+<div id="map_canvas"></div>
+{% include 'map.html' with theater=theater %}
+</div>
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script>
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <script>
+        function initialize() {
+            var map_canvas = document.getElementById('map_canvas');
+            var myLatlng = new google.maps.LatLng({{ theater.latitude }}, {{ theater.longtitude }});
+            var map_options = {
+                center: myLatlng,
+                zoom: 20,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var map = new google.maps.Map(map_canvas, map_options)
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: '{{ threater.name }}'
+            });
+        }
+    </script>
+{% endblock %}

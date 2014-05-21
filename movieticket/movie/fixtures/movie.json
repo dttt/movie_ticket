@@ -1,0 +1,19 @@
+[
+{
+  "pk": 1, 
+  "model": "movie.movie", 
+  "fields": {
+    "name": "Maleficent", 
+    "poster": "images/posters/maleficent-poster.jpg", 
+    "company": 1, 
+    "summary": "A vindictive fairy is driven to curse an infant princess only to realize the child may be the only one who can restore peace.", 
+    "length": 97, 
+    "MPAA": 2, 
+    "genre": [
+      1, 
+      2
+    ], 
+    "trailer": "https://www.youtube.com/watch?v=w-XO4XiRop0"
+  }
+}
+]

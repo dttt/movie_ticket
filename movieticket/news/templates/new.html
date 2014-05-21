@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title_text %}
+    new.title
+{% endblock %}
+
+{% block main_content %}
+    <div class="text-center">
+        <img src="{{ new.image.url }}">
+        <h1>{{ new.title }}</h1>
+    </div>
+    {% autoescape off %}
+    <p>{{ new.text }}</p>
+    {% endautoescape %}
+{% endblock %}

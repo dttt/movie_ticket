@@ -7,7 +7,7 @@ from .models import Company
 from .models import Presentation
 from .models import MPAA
 from .models import Movie
-from .models import PresentationMovie
+from .models import Version
 
 
 admin.site.register(Actor)
@@ -17,5 +17,5 @@ admin.site.register(Company)
 admin.site.register(Presentation)
 admin.site.register(MPAA)
 admin.site.register(Movie)
-admin.site.register(PresentationMovie)
+admin.site.register(Version)
 # Register your models here.

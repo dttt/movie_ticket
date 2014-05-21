@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title_text %}
+    {{ block.super }} | Danh sach cac cum rap
+{% endblock %}
+
+{% block main_content %}
+    {% for theater in theaters %}
+        {{ theater.name }}
+    {% endfor %}
+{% endblock %}

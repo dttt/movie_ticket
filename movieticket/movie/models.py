@@ -89,7 +89,7 @@ class Movie(models.Model):
         verbose_name_plural = "Các Phim"
 
 
-class PresentationMovie(models.Model):
+class Version(models.Model):
     begin_date = models.DateField("Ngày bắt đầu chiếu")
     end_date = models.DateField("Ngày kết thúc chiếu")
     presentation = models.ForeignKey(
@@ -98,3 +98,7 @@ class PresentationMovie(models.Model):
 
     def __unicode__(self):
         return "%s (%s)" % (self.movie, self.presentation)
+
+    class Meta:
+        verbose_name = "Phien ban"
+        verbose_name_plural = "Cac phien ban"

@@ -7,4 +7,5 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', 'movie.views.home', name='home'),
+    url(r'^(?P<movie_id>\d+)/$', 'movie.views.show_movie', name='show-movie')
 )
