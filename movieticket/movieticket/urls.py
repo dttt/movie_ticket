@@ -1,6 +1,9 @@
 from django.conf.urls import patterns, include, url
-
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
+
+from movieticket import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -13,3 +16,6 @@ urlpatterns = patterns('',
     url(r'^$', include('django.contrib.flatpages.urls')),
     url(r'^users/', include('users.urls', namespace='users')),
 )
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
