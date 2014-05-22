@@ -1,20 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
-from helper.misc import get_loop_time
 from news.models import New
-from movie.models import Movie
+from helper.helper import MovieHelper
+from movie.models import Movie, Version
 
 
 def home(request):
+    helper = MovieHelper()
     news = New.objects.all()[:5]
-    loop_times = get_loop_time(news)
+    current_movies = helper.get_current()  # Version.objects.all()
+
     return render(
         request,
         'home.html',
-        {"news": news, "loop_times": loop_times}
+        {"news": news, 'current_movies': current_movies}
     )
 
 
 def show_movie(request, movie_id):
     movie = Movie.objects.get(id=movie_id)
     return render(request, 'show-movie.html', {"movie": movie})
+
+
+def show_version(request, version_slug):
+    version = get_object_or_404(Version, slug=version_slug)
+    return render(request, 'show-version.html', {"version": version})

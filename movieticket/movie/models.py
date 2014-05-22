@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.template.defaultfilters import slugify
 
 
 class Genre(models.Model):
@@ -50,9 +51,15 @@ class Director(models.Model):
 
 class Presentation(models.Model):
     name = models.CharField("Tên cách chiếu phim", max_length=50)
+    slug = models.SlugField(max_length=20, default='null')
 
     def __unicode__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = slugify(self.name)
+        super(Presentation, self).save()
 
     class Meta:
         verbose_name = "Cách chiếu phim"
@@ -78,6 +85,7 @@ class Movie(models.Model):
     poster = models.ImageField("Poster của phim", upload_to="images/posters")
     summary = models.TextField("Tóm tắt phim")
     length = models.IntegerField("Độ dài phim")
+    slug = models.SlugField(max_length=100, default='null')
     # One to many
     company = models.ForeignKey(Company, verbose_name="Công ty sản xuất")
     MPAA = models.ForeignKey(MPAA)
@@ -88,6 +96,11 @@ class Movie(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = slugify(self.name)
+        super(Movie, self).save()
 
     class Meta:
         verbose_name = "Phim"
@@ -100,10 +113,21 @@ class Version(models.Model):
     presentation = models.ForeignKey(
         Presentation, verbose_name="Cách chiếu phim")
     movie = models.ForeignKey(Movie, verbose_name="Tên phim")
+    slug = models.SlugField(max_length=110, unique=True, blank=True)
 
     def __unicode__(self):
         return "%s (%s)" % (self.movie, self.presentation)
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self.presentation.slug + '-' + self.movie.slug
+        super(Version, self).save()
+
+    def get_absolute_url(self):
+        return reverse('movie:show-version', args=(self.slug,))
+
     class Meta:
         verbose_name = "Phien ban"
         verbose_name_plural = "Cac phien ban"
+
+        unique_together = ('movie', 'presentation')

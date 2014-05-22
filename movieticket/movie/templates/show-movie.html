@@ -1,15 +1,9 @@
-{% extends 'base.html' %}
-{% block title_text %}
-    {{ movie.name }}
-{% endblock %}
-
-{% block main_content %}
 <div class="row">
     <div id="poster" class="col-lg-3">
         <img src="{{ movie.poster.url }}" class="img-thumbnail">
     </div>
     <div class="col-lg-9">
-        <h1 class="text-center">{{ movie.name }}</h1>
+        <h1 class="text-center">{{ version }}</h1>
 
         <!-- Thong tin phim -->
         <div class="panel panel-primary">
@@ -45,13 +39,3 @@
 
 <!-- Show trailer in modal (popups) -->
 {% include 'modal-trailer.html' with movie=movie only %}
-
-{% endblock %}
-{% block javascript %}
-{{ block.super }}
-<script type="text/javascript">
-    $('#show-trailer').click(function() {
-        $("#trailer_modal").modal('show');
-    });
-</script>
-{% endblock %}
