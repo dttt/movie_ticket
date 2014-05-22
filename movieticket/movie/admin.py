@@ -18,4 +18,3 @@ admin.site.register(Presentation)
 admin.site.register(MPAA)
 admin.site.register(Movie)
 admin.site.register(Version)
-# Register your models here.

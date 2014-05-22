@@ -1,0 +1,7 @@
+{% for item in list %}
+    {% if forloop.counter != list.count %}
+        {{ item }},
+    {% else %}
+        {{ item }}.
+    {% endif %}
+{% endfor %}

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
+from django.core.urlresolvers import reverse
 
 
 class Genre(models.Model):
@@ -77,9 +78,13 @@ class Movie(models.Model):
     poster = models.ImageField("Poster của phim", upload_to="images/posters")
     summary = models.TextField("Tóm tắt phim")
     length = models.IntegerField("Độ dài phim")
-    genre = models.ManyToManyField(Genre, verbose_name="Thể loại")
+    # One to many
     company = models.ForeignKey(Company, verbose_name="Công ty sản xuất")
     MPAA = models.ForeignKey(MPAA)
+    director = models.ForeignKey(Director, verbose_name="Dao dien")
+    # Many to many
+    actors = models.ManyToManyField(Actor, verbose_name="Cac dien vien")
+    genre = models.ManyToManyField(Genre, verbose_name="Thể loại")
 
     def __unicode__(self):
         return self.name

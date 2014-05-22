@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'floppyforms',
     'news',
     'ckeditor',
+    'search',
 )
 
 SITE_ID = 1
