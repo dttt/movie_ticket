@@ -34,7 +34,7 @@ class CinemaRoom(models.Model):
         MovieTheater, verbose_name='Rạp mà phòng thuộc về')
 
     def __unicode__(self):
-        return self.name
+        return self.name + '-' + self.theater.name
 
     class Meta:
         verbose_name = "Rạp"

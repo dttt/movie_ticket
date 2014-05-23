@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 
 from news.models import New
-from helper.helper import MovieHelper
+from helper.helper import MovieHelper, ScheduleHelper
 from movie.models import Movie, Version
 
 
@@ -27,5 +27,12 @@ def show_movie(request, movie_id):
 
 
 def show_version(request, version_slug):
+    helper = ScheduleHelper()
+
     version = get_object_or_404(Version, slug=version_slug)
-    return render(request, 'show-version.html', {"version": version})
+    schedules = helper.get_schedule(movie=version)
+
+    return render(request, 'show-version.html', {
+        "version": version,
+        "schedules": schedules,
+    })

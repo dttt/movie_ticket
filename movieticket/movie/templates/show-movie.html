@@ -20,6 +20,9 @@
                     {% include 'list.html' with list=movie.actors.all %}
                 </p>
                 <p><b>Hang san xuat: </b>{{ movie.company }}</p>
+                <p><b>Cum rap: </b>
+                    {% include 'list.html' with list=version.available_theaters.all %}
+                </p>
             </div>
         </div>
         <!-- Thong tin phim -->

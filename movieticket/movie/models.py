@@ -4,6 +4,8 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 
+from facility.models import MovieTheater
+
 
 class Genre(models.Model):
     name = models.CharField("Tên thể loại", max_length=30)
@@ -51,7 +53,7 @@ class Director(models.Model):
 
 class Presentation(models.Model):
     name = models.CharField("Tên cách chiếu phim", max_length=50)
-    slug = models.SlugField(max_length=20, default='null')
+    slug = models.SlugField(max_length=20, blank=True)
 
     def __unicode__(self):
         return self.name
@@ -85,7 +87,7 @@ class Movie(models.Model):
     poster = models.ImageField("Poster của phim", upload_to="images/posters")
     summary = models.TextField("Tóm tắt phim")
     length = models.IntegerField("Độ dài phim")
-    slug = models.SlugField(max_length=100, default='null')
+    slug = models.SlugField(max_length=100, blank=True)
     # One to many
     company = models.ForeignKey(Company, verbose_name="Công ty sản xuất")
     MPAA = models.ForeignKey(MPAA)
@@ -114,6 +116,8 @@ class Version(models.Model):
         Presentation, verbose_name="Cách chiếu phim")
     movie = models.ForeignKey(Movie, verbose_name="Tên phim")
     slug = models.SlugField(max_length=110, unique=True, blank=True)
+    available_theaters = models.ManyToManyField(
+        MovieTheater, blank=True, verbose_name="Cac cum rap dang chieu")
 
     def __unicode__(self):
         return "%s (%s)" % (self.movie, self.presentation)
@@ -129,5 +133,4 @@ class Version(models.Model):
     class Meta:
         verbose_name = "Phien ban"
         verbose_name_plural = "Cac phien ban"
-
         unique_together = ('movie', 'presentation')
