@@ -8,6 +8,7 @@ class Message(object):
     PASSWORD_NOT_MATCH = "Mật khẩu không trùng nhau"
     PASSWORD_LENGTH_NOT_VALID = "Độ dài mật khẩu từ 6 đến 20 kí tự"
     EMAIL_PASSWORD_NOT_MATCH = "Email and password is not match"
+    BEGIN_DATE_END_DATE_NOT_VALID = "Ngay ket thuc phai hon ngay ban dau"
 
 
 def get_loop_time(lists):
