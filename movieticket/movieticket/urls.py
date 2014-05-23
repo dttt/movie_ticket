@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^facility/', include('facility.urls', namespace='facility')),
     url(r'^movie/', include('movie.urls', namespace='movie')),
+    url(r'^search/$', 'book-ticket.views.book', name='book')
 )
 
 urlpatterns += staticfiles_urlpatterns()

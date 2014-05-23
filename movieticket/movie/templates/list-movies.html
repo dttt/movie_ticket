@@ -1,8 +1,8 @@
-<div class="row">
 {% for movie in movies %}
-    <div class="col-md-3">
-        <img src="{{ movie.movie.poster.url }}">
-        <p>{{ movie }}</p>
+    <div class="col-md-4 text-center">
+        <a href="{{ movie.get_absolute_url }}">
+            <img src="{{ movie.movie.poster.url }}">
+            <p class="title">{{ movie }}</p>
+        </a>
     </div>
 {% endfor %}
-</div>

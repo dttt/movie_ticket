@@ -8,12 +8,16 @@ from movie.models import Movie, Version
 def home(request):
     helper = MovieHelper()
     news = New.objects.all()[:5]
-    current_movies = helper.get_current()  # Version.objects.all()
+    current_movies = helper.get_current(limit=5)
+    future_movies = helper.get_future(limit=5)
+    available_movies = helper.get_current()
 
-    return render(
-        request,
-        'home.html',
-        {"news": news, 'current_movies': current_movies}
+    return render(request, 'home.html', {
+        "news": news,
+        'current_movies': current_movies,
+        'future_movies': future_movies,
+        'available_movies': available_movies,
+        }
     )
 
 

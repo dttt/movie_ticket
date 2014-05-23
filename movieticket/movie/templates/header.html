@@ -14,9 +14,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
+        <!--
         <a href="{% url 'home' %}" class="navbar-brand">
             <span class="glyphicon glyphicon-home"></span>
-        </a>
+        </a>-->
     </div>
     <div id="nav-header" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -27,7 +28,7 @@
                 <li><a href="{% url 'users:signin' %}">Dang nhap <span class="glyphicon glyphicon-log-in"></span></a></li>
                 <li><a href="{% url 'users:signup' %}">Dang ki <span class="glyphicon glyphicon-plus"></span></a></li>
             {% else %}
-            <li><a href="{% url 'users:signout' %}">Thoat <span class="glyphicon glyphicon-log-out"></span></a></li>
+                <li><a href="{% url 'users:signout' %}">Thoat <span class="glyphicon glyphicon-log-out"></span></a></li>
             {% endif %}
         </ul>
     </div>
