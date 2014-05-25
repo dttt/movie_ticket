@@ -1,0 +1,143 @@
+commit f4aa50d79d7be626983f6f84fc0b37ed4b154e99
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Tue May 20 09:35:29 2014 +0700
+
+    Changed requirements
+
+commit f0b8d092ec7dd91af25f5a725d3f68dd2969052a
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Tue May 20 09:29:08 2014 +0700
+
+    Added login form
+
+commit 341412649bf66b8743ceb9a26ccaaaa0c1ec447f
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Tue May 20 08:32:34 2014 +0700
+
+    Deleted city fields from migration and change validate message to Vietnamese
+
+commit 0b7565aab113deca33f89642e59aea4f01dc179c
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Thu May 15 18:06:38 2014 +0700
+
+    Added jquery datepicker and some validate message
+
+commit b1d3fdf5fe5589c9b76e44701e4d435e1b725556
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Thu May 15 10:10:56 2014 +0700
+
+    Added some validator, there are date validate error
+
+commit 02c27147e9aec395b72749e8e28a4af4fe211609
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Wed May 14 17:21:11 2014 +0700
+
+    Added sign up form but need a valitor to chech password
+
+commit dcc36db27450cbf8b5c3d3097eb2ecb5bdbc0e99
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Wed May 14 09:29:00 2014 +0700
+
+    Added bootstrap and change static files setting
+
+commit c5f2b7bfdbeac75d5a686ac8c8e159dcdd15c574
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Tue May 13 10:06:50 2014 +0700
+
+    Added contract and about pages
+
+commit 803f4b71046922d30a32e1e5f38e49b5c7863626
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Fri May 2 17:41:21 2014 +0700
+
+    Added some verbose name
+
+commit 6c8d35300cc99f62d9ab703e869b5ecc06cc8305
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Fri May 2 17:07:29 2014 +0700
+
+    Added custom user to change login use email
+
+commit 01546bf2ef1e317339c718b675366b8a75a17632
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Fri May 2 15:41:57 2014 +0700
+
+    Added media folder
+
+commit ce5ea5ff7a85ec9f4d8e524ee67715239ee7e0f2
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Tue Apr 29 18:05:43 2014 +0700
+
+    Added to do list
+
+commit 7f2d4bc5c069c6f1c805a1c5b327dd8ba75c897f
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Tue Apr 29 17:56:57 2014 +0700
+
+    Registered all models to admin site
+
+commit 8ec9a458920ace6e9a816789241ebc1e5c29be4b
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Tue Apr 29 17:05:50 2014 +0700
+
+    Added to do list
+
+commit 5502ce3e6b7eb4168b03bc4a130f505faa9667b6
+Author: Trung <trungtrong456@gmail.com>
+Date:   Tue Apr 29 16:56:28 2014 +0700
+
+    Added verbose name and some common methods for all models
+
+commit e2887904b9f0934bb08bda1919f3d6837b7f5260
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Tue Apr 29 16:13:54 2014 +0700
+
+    Added models for movie app, need verbose name in vietnamese
+
+commit e7cd3b153b57c8a0d26c767cf631520d0fbfcfb0
+Author: Trung <trungtrong456@gmail.com>
+Date:   Tue Apr 29 15:58:25 2014 +0700
+
+    Changed MPAA column
+
+commit 2c58da4dc57290b753aef252e197d870ab1a2c85
+Author: Trung <trungtrong456@gmail.com>
+Date:   Tue Apr 29 15:42:52 2014 +0700
+
+    Deleted old database model
+
+commit d6a97df49aef9c2a79e315481f9363a136b31607
+Author: Trung <trungtrong456@gmail.com>
+Date:   Tue Apr 29 15:36:24 2014 +0700
+
+    Added CinemaRoom model in facility app
+
+commit 4ef3d1c832c6dffe42ed45b6f50c8f71a8aefba3
+Author: Trung <trungtrong456@gmail.com>
+Date:   Tue Apr 29 14:38:44 2014 +0700
+
+    Changed some attribute in Presentation_type table
+
+commit a424c79bc2e1fc7384bb427f9a64c384d926291b
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Tue Apr 29 14:30:57 2014 +0700
+
+    Add movie app
+
+commit 12c30ed50bb701b0f9b7828ca40392ff2a3fedd9
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Mon Apr 14 10:24:51 2014 +0700
+
+    Added class diagram and database diagram
+
+commit c8f046e00a9574497d8a24024b27bc5f7953f78b
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Mon Apr 14 10:04:25 2014 +0700
+
+    Added South and change database setting to postgresql
+
+commit 6ee7da7e3cef42e94378111835daa3db930e7b95
+Author: Trung Doan <trungtrong456@gmail.com>
+Date:   Mon Apr 14 09:40:12 2014 +0700
+
+    Skeleton project and movie app
