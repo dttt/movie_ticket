@@ -1,0 +1,47 @@
+[
+{
+  "pk": 1, 
+  "model": "movie.mpaa", 
+  "fields": {
+    "meaning": "General Audiences", 
+    "explanation": "Nothing that would offend parents for viewing by children", 
+    "name": "G"
+  }
+},
+{
+  "pk": 2, 
+  "model": "movie.mpaa", 
+  "fields": {
+    "meaning": "Parental Guidance Suggested", 
+    "explanation": "\"Parents urged to give 'parental guidance.' May contain some material parents might not like for their young children.\"\r\n\r\nOn the box: \"Some material may not be suitable for children\"", 
+    "name": "PG"
+  }
+},
+{
+  "pk": 3, 
+  "model": "movie.mpaa", 
+  "fields": {
+    "meaning": "Parents Strongly Cautioned", 
+    "explanation": "\"Parents are urged to be cautious. Some material may be inappropriate for pre-teenagers.\"\r\n\r\nOn the box: \"Some material may be inappropriate for children under 13\"", 
+    "name": "PG-13"
+  }
+},
+{
+  "pk": 4, 
+  "model": "movie.mpaa", 
+  "fields": {
+    "meaning": "Restricted", 
+    "explanation": "\"Contains some adult material. Parents are urged to learn more about the film before taking their young children with them.\"\r\n\r\nOn the box: \"Under 17 requires accompanying parent or adult guardian\"", 
+    "name": "R"
+  }
+},
+{
+  "pk": 5, 
+  "model": "movie.mpaa", 
+  "fields": {
+    "meaning": "No One 17 and Under Admitted", 
+    "explanation": "\"Clearly adult. Children are not admitted.\"\r\n\r\nOn the box: Same as the meaning", 
+    "name": "NC-17"
+  }
+}
+]

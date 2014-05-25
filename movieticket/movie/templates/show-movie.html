@@ -1,0 +1,44 @@
+<div class="row">
+    <div id="poster" class="col-lg-3">
+        <img src="{{ movie.poster.url }}" class="img-thumbnail">
+    </div>
+    <div class="col-lg-9">
+        <h1 class="text-center">{{ version }}</h1>
+
+        <!-- Thong tin phim -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Thong tin phim</h3>
+            </div>
+            <div class="panel-body">
+                <p><b>Do dai: </b>{{ movie.length }} phut</p>
+                <p><b>Dao dien: </b>{{ movie.director }}</p>
+                <p><b>The loai: </b>
+                    {% include 'list.html' with list=movie.genre.all %}
+                </p>
+                <p><b>Dien vien: </b>
+                    {% include 'list.html' with list=movie.actors.all %}
+                </p>
+                <p><b>Hang san xuat: </b>{{ movie.company }}</p>
+                <p><b>Cum rap: </b>
+                    {% include 'list.html' with list=version.available_theaters.all %}
+                </p>
+            </div>
+        </div>
+        <!-- Thong tin phim -->
+
+        <!-- Tom tat -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Tom tat</h3>
+            </div>
+            <div class="panel-body">{{ movie.summary }}</div>
+        </div>
+        <!-- Tom tat -->
+
+        <button class="btn btn-primary" id="show-trailer">Trailer</button>
+    </div>
+</div>
+
+<!-- Show trailer in modal (popups) -->
+{% include 'modal-trailer.html' with movie=movie only %}

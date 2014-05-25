@@ -2,7 +2,7 @@
 
 {% load staticfiles %}
 
-{% block title_text %}Đăng ký{% endblock %}
+{% block title_text %}{{ block.super }} | Đăng ký{% endblock %}
 
 {% block css_link %}
     {{ block.super }}
@@ -12,14 +12,4 @@
 {% block main_content %}
     {% load crispy_forms_tags %}
     {% crispy form %}
-{% endblock %}
-
-{% block javascript %}
-    {{ block.super }}
-    <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.datepicker').datepicker({ dateFormat: "dd/mm/yy" });
-        });
-    </script>
 {% endblock %}

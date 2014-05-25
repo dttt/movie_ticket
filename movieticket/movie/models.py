@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
+from django.core.urlresolvers import reverse
+from django.template.defaultfilters import slugify
+
+from facility.models import MovieTheater
 
 
 class Genre(models.Model):
@@ -49,9 +53,15 @@ class Director(models.Model):
 
 class Presentation(models.Model):
     name = models.CharField("Tên cách chiếu phim", max_length=50)
+    slug = models.SlugField(max_length=20, blank=True)
 
     def __unicode__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = slugify(self.name)
+        super(Presentation, self).save()
 
     class Meta:
         verbose_name = "Cách chiếu phim"
@@ -77,24 +87,50 @@ class Movie(models.Model):
     poster = models.ImageField("Poster của phim", upload_to="images/posters")
     summary = models.TextField("Tóm tắt phim")
     length = models.IntegerField("Độ dài phim")
-    genre = models.ManyToManyField(Genre, verbose_name="Thể loại")
+    slug = models.SlugField(max_length=100, blank=True)
+    # One to many
     company = models.ForeignKey(Company, verbose_name="Công ty sản xuất")
     MPAA = models.ForeignKey(MPAA)
+    director = models.ForeignKey(Director, verbose_name="Dao dien")
+    # Many to many
+    actors = models.ManyToManyField(Actor, verbose_name="Cac dien vien")
+    genre = models.ManyToManyField(Genre, verbose_name="Thể loại")
 
     def __unicode__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = slugify(self.name)
+        super(Movie, self).save()
 
     class Meta:
         verbose_name = "Phim"
         verbose_name_plural = "Các Phim"
 
 
-class PresentationMovie(models.Model):
+class Version(models.Model):
     begin_date = models.DateField("Ngày bắt đầu chiếu")
     end_date = models.DateField("Ngày kết thúc chiếu")
     presentation = models.ForeignKey(
         Presentation, verbose_name="Cách chiếu phim")
     movie = models.ForeignKey(Movie, verbose_name="Tên phim")
+    slug = models.SlugField(max_length=110, unique=True, blank=True)
+    available_theaters = models.ManyToManyField(
+        MovieTheater, blank=True, verbose_name="Cac cum rap dang chieu")
 
     def __unicode__(self):
         return "%s (%s)" % (self.movie, self.presentation)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self.presentation.slug + '-' + self.movie.slug
+        super(Version, self).save()
+
+    def get_absolute_url(self):
+        return reverse('movie:show-version', args=(self.slug,))
+
+    class Meta:
+        verbose_name = "Phien ban"
+        verbose_name_plural = "Cac phien ban"
+        unique_together = ('movie', 'presentation')

@@ -1,0 +1,93 @@
+[
+{
+  "pk": 1, 
+  "model": "movie.genre", 
+  "fields": {
+    "name": "H\u00e0nh \u0111\u1ed9ng"
+  }
+},
+{
+  "pk": 2, 
+  "model": "movie.genre", 
+  "fields": {
+    "name": "Phi\u00eau l\u01b0u"
+  }
+},
+{
+  "pk": 3, 
+  "model": "movie.genre", 
+  "fields": {
+    "name": "T\u00e2m l\u00ed"
+  }
+},
+{
+  "pk": 4, 
+  "model": "movie.genre", 
+  "fields": {
+    "name": "H\u00e0i h\u01b0\u1edbc"
+  }
+},
+{
+  "pk": 5, 
+  "model": "movie.genre", 
+  "fields": {
+    "name": "Phim t\u00e0i li\u1ec7u"
+  }
+},
+{
+  "pk": 6, 
+  "model": "movie.genre", 
+  "fields": {
+    "name": "Kinh d\u1ecb"
+  }
+},
+{
+  "pk": 7, 
+  "model": "movie.genre", 
+  "fields": {
+    "name": "Trinh th\u00e1m"
+  }
+},
+{
+  "pk": 8, 
+  "model": "movie.genre", 
+  "fields": {
+    "name": "S\u1eed thi"
+  }
+},
+{
+  "pk": 9, 
+  "model": "movie.genre", 
+  "fields": {
+    "name": "Khoa h\u1ecdc vi\u1ec5n t\u01b0\u1edfng"
+  }
+},
+{
+  "pk": 10, 
+  "model": "movie.genre", 
+  "fields": {
+    "name": "Nh\u1ea1c k\u1ecbch"
+  }
+},
+{
+  "pk": 11, 
+  "model": "movie.genre", 
+  "fields": {
+    "name": "T\u00ecnh c\u1ea3m"
+  }
+},
+{
+  "pk": 12, 
+  "model": "movie.genre", 
+  "fields": {
+    "name": "Ho\u1ea1t h\u00ecnh"
+  }
+},
+{
+  "pk": 13, 
+  "model": "movie.genre", 
+  "fields": {
+    "name": "Phi\u00eau l\u01b0u"
+  }
+}
+]

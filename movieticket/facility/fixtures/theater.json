@@ -1,0 +1,26 @@
+[
+{
+  "pk": 2, 
+  "model": "facility.movietheater", 
+  "fields": {
+    "close_time": "16:15:08", 
+    "open_time": "16:15:08", 
+    "longtitude": "134.589837", 
+    "address": "dsfasdfs", 
+    "latitude": "-10.339565", 
+    "name": "Cinema 1"
+  }
+},
+{
+  "pk": 3, 
+  "model": "facility.movietheater", 
+  "fields": {
+    "close_time": "17:15:29", 
+    "open_time": "17:15:28", 
+    "longtitude": "88.000000", 
+    "address": "sdfsdfsdfssfds", 
+    "latitude": "10.000000", 
+    "name": "C\u1ee5m r\u1ea1p 2"
+  }
+}
+]

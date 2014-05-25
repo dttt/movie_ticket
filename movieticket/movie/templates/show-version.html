@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title_text %}
+    {{ version }}
+{% endblock %}
+
+{% block main_content %}
+    {% include 'show-movie.html' with movie=version.movie version=version only %}
+    {% include 'schedules-theater.html' with schedules=schedules only %}
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $('#show-trailer').click(function() {
+            $("#trailer_modal").modal('show');
+        });
+    </script>
+{% endblock %}
