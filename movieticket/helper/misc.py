@@ -17,3 +17,38 @@ def get_loop_time(lists):
     for item in lists:
         times.append(i + 1)
     return times
+
+
+class ScheduleHelper(object):
+
+    def get_sorted_schedules(self, movie=None):
+        result = []
+
+        schedules = Schedule.objects.filter(movie=movie).distinct('room__theater')
+
+        for schedule in schedules:
+            theater = schedule.room.theater
+            temp = {}
+
+            temp['theater'] = theater
+            temp['schedules'] = self.get_schedules_by_theater(
+                movie=movie, theater=theater)
+
+            result.append(temp)
+
+        return result
+
+    def get_schedules_by_theater(self, movie=None, theater=None):
+        schedules = Schedule.objects.filter(
+            movie=movie,
+            room__theater=theater,
+        )
+        for schedule in schedules:
+            temp = {}
+            temp['date'] = schedule.date
+            temp['schedules'] = Schedule.objects.filter(
+                movie=movie,
+                room__theater=theater,
+                date=schedule.date,
+            )
+        return temp

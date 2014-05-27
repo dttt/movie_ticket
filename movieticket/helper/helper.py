@@ -26,22 +26,37 @@ class MovieHelper(object):
 
 class ScheduleHelper(object):
 
-    def get_schedule(self, movie=None):
-        sorted_schedules = []
-        if movie:
-            schedules = Schedule.objects.filter(
-                movie=movie.movie
+    def get_sorted_schedules(self, movie=None):
+        result = []
+
+        schedules = Schedule.objects.filter(movie=movie).distinct('room__theater')
+
+        for schedule in schedules:
+            theater = schedule.room.theater
+            temp = {}
+
+            temp['theater'] = theater
+            temp['schedules'] = self.get_schedules_by_theater(
+                movie=movie, theater=theater)
+
+            result.append(temp)
+
+        print result
+        return result
+
+    def get_schedules_by_theater(self, movie=None, theater=None):
+        schedules = Schedule.objects.filter(
+            movie=movie,
+            room__theater=theater,
+        ).distinct('date')
+        result = []
+        for schedule in schedules:
+            temp = {}
+            temp['date'] = schedule.date
+            temp['schedules'] = Schedule.objects.filter(
+                movie=movie,
+                room__theater=theater,
+                date=schedule.date,
             )
-        if schedules:
-            for schedule in schedules:
-                sorted_schedules.append(
-                    {schedule.room.theater: {schedule.date: {schedule}}})
-
-            d = defaultdict(list)
-            for k, v in sorted_schedules:
-                d[k].append(v)
-            d.items()
-            print d
-            return sorted_schedules
-
-        return None
+            result.append(temp)
+        return result

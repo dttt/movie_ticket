@@ -1,25 +1,19 @@
-
-    <div class="panel panel-primary">
-        <div class="panel-heading">Lich chieu cua {{ movie }}</div>
-        <div class="panel-body">
-            {% for theater, values in schedules.items %}
-            {#% for theater, values in schedule.items %#}
-                <div class="panel panel-default">
-                    <div class="panel-heading">{{ theater }}</div>
-                    <table class="table">
-                        <tbody>
-                            {% for dates, value in values.items %}
-                            <tr>
-                                <td>{{ dates }}</td>
-                                {% for s in value %}
-                                <td>{{ s }}</td>
-                                {% endfor %}
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            {#% endfor %#}
+<div class="panel panel-primary">
+    <div class="panel-heading">{{ schedules.theater }}</div>
+    <div class="panel-body">
+        <table class="table">
+            {% for items in schedules.schedules %}
+                <tr>
+                    <td>{{ items.date|date:"D d M y" }}</td>
+                    {% for schedules in items.schedules %}
+                        <td>
+                            <a href="#" class="btn btn-primary">
+                                {{ schedules.begin_time|time:"H:i" }}
+                            </a>
+                        </td>
+                    {% endfor %}
+                </tr>
             {% endfor %}
-        </div>
+        </table>
     </div>
+</div>

@@ -30,9 +30,9 @@ def show_version(request, version_slug):
     helper = ScheduleHelper()
 
     version = get_object_or_404(Version, slug=version_slug)
-    schedules = helper.get_schedule(movie=version)
+    schedules = helper.get_sorted_schedules(movie=version)
 
     return render(request, 'show-version.html', {
         "version": version,
-        "schedules": schedules,
+        "sorted_schedules": schedules,
     })
