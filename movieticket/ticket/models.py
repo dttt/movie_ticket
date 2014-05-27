@@ -20,3 +20,30 @@ class Schedule(models.Model):
     class Meta:
         verbose_name = "Lich chieu"
         verbose_name_plural = "Cac lich chieu"
+
+
+class TicketType(models.Model):
+    name = models.CharField("Ten loai ve", max_length=40)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Loai ve"
+        verbose_name_plural = "Cac loai ve"
+
+
+class Ticket(models.Model):
+    price = models.IntegerField("Gia ve")
+    row = models.CharField("Thu tu dong", max_length=2)
+    column = models.CharField("Thu tu cot", max_length=2)
+    date_sold = models.DateField("Ngay ban")
+    ticket_type = models.ForeignKey(TicketType, verbose_name="Loai ve")
+    schedule = models.ForeignKey(Schedule, verbose_name="Ve dat cho")
+
+    def __unicode(self):
+        return self.id
+
+    class Meta:
+        verbose_name = "Ve"
+        verbose_name_plural = "Cac ve"
