@@ -1,9 +1,9 @@
-from collections import defaultdict
-
 from django.utils import timezone
 
 from movie.models import Version
 from ticket.models import Schedule
+
+from collections import defaultdict
 
 
 class MovieHelper(object):
@@ -26,16 +26,22 @@ class MovieHelper(object):
 
 class ScheduleHelper(object):
 
-    def get_schedule(self, movie=None, date=None, theater=None):
+    def get_schedule(self, movie=None):
+        sorted_schedules = []
         if movie:
-            schedules = Schedule.objects.get(
-                movie=movie
+            schedules = Schedule.objects.filter(
+                movie=movie.movie
             )
+        if schedules:
+            for schedule in schedules:
+                sorted_schedules.append(
+                    {schedule.room.theater: {schedule.date: {schedule}}})
 
-        sorted_schedules = defaultdict(list)
-        for schedule in schedules:
-            sorted_schedules[schedule.date].append(schedule)
+            d = defaultdict(list)
+            for k, v in sorted_schedules:
+                d[k].append(v)
+            d.items()
+            print d
+            return sorted_schedules
 
-        result = sorted_schedules.values()
-
-        return result
+        return None

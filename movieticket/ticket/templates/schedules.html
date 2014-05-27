@@ -1,8 +1,9 @@
 <div class="panel panel-primary">
     <div class="panel-heading">Lich chieu cua {{ movie }}</div>
     <div class="panel-body">
-        {% for theater in movie.available_theaters.all %}
-            {% include 'schedules-theater.html' with theater=theater %}
+        {% for dates, schedule in schedules %}
+            {#% include 'schedules-theater.html' with theater=theater %#}
+            {{dates}}: {{ schedule }}
         {% endfor %}
     </div>
 </div>

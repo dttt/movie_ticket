@@ -109,4 +109,4 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_UPLOAD_PATH = os.path.abspath(os.path.join(BASE_DIR, '../media_files/uploads'))
