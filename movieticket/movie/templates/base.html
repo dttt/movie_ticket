@@ -10,12 +10,17 @@
         <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet" media="screen">
         <link rel="stylesheet" href="{% static "css/carousel.css" %}">
         <link rel="stylesheet" href="{% static "css/custom.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap-combobox.css" %}">
     {% endblock %}
 </head>
 <body>
     <div id="pages">
         <div id="header">
             {% include "header.html" %}
+        </div>
+
+        <div id="message">
+            {% include "message.html" %}
         </div>
 
         <!-- Main content of page -->
@@ -35,6 +40,8 @@
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
         <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
         <script type="text/javascript" src="{% static "js/custom.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/bootstrap-combobox.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/ajax.js" %}"></script>
     {% endblock %}
 </body>
 </html>

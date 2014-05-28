@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title_text %}{{ schedule.movie }}{% endblock %}
+{% block main_content %}
+    <div class="col-md-4">{% include 'schedule.html' with schedule=schedule %}</div>
+    <div class="col-md-8">
+        {% include 'reservation-reminder.html' with user=user %}
+        {% include 'select-ticket.html' %}
+        <div class="pull-right">
+            <a href="{% url 'reservation:select-tickets' schedule.id 2 %}" class="btn btn-primary">Chon ghe</a>
+        </div>
+    </div>
+{% endblock %}

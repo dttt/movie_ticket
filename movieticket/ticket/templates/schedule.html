@@ -1,0 +1,8 @@
+<div id="schedule-id" class="jumbotron">
+    <h2>Ban da chon</h2>
+    <p>Phim: {{ schedule.movie }}</p>
+    <p>Cum rap: {{ schedule.room.theater }}</p>
+    <p>Rap: {{ schedule.room.name }}</p>
+    <p>Ngay chieu: {{ schedule.date }}</p>
+    <p>Gio chieu: {{ schedule.begin_time|time:"H:i" }}</p>
+</div>

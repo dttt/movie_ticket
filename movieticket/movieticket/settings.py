@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'news',
     'ckeditor',
     'ticket',
+    'reservation',
 )
 
 SITE_ID = 1
@@ -110,3 +111,5 @@ AUTH_USER_MODEL = 'users.CustomUser'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 CKEDITOR_UPLOAD_PATH = os.path.abspath(os.path.join(BASE_DIR, '../media_files/uploads'))
+
+LOGIN_URL = 'users:signin'

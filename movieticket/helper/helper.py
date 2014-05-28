@@ -3,8 +3,6 @@ from django.utils import timezone
 from movie.models import Version
 from ticket.models import Schedule
 
-from collections import defaultdict
-
 
 class MovieHelper(object):
 
@@ -41,7 +39,6 @@ class ScheduleHelper(object):
 
             result.append(temp)
 
-        print result
         return result
 
     def get_schedules_by_theater(self, movie=None, theater=None):
@@ -60,3 +57,14 @@ class ScheduleHelper(object):
             )
             result.append(temp)
         return result
+
+
+class MiscHelper(object):
+
+    def get_alphabet(self, max_chr):
+        alphabet = [chr(i) for i in range(ord('a'), ord(max_chr) + 1)]
+        return alphabet
+
+    def get_ticket_limit(self):
+        limit = [i for i in range(1, 11)]
+        return limit

@@ -44,6 +44,11 @@ def signin(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
+
+                # Redirect when using login_required()
+                if (request.GET.get('next', False)):
+                    return redirect(request.GET['next'])
+
                 return redirect(reverse('home'))
         else:
             errors = {Message.EMAIL_PASSWORD_NOT_MATCH}

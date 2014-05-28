@@ -7,7 +7,7 @@
                     <td>{{ items.date|date:"D d M y" }}</td>
                     {% for schedules in items.schedules %}
                         <td>
-                            <a href="#" class="btn btn-primary">
+                            <a href="{% url 'reservation:make' schedules.id %}" class="btn btn-primary">
                                 {{ schedules.begin_time|time:"H:i" }}
                             </a>
                         </td>

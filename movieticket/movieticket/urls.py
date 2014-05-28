@@ -19,7 +19,16 @@ urlpatterns = patterns('',
     url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^facility/', include('facility.urls', namespace='facility')),
     url(r'^movie/', include('movie.urls', namespace='movie')),
-    url(r'^search/$', 'ticket.views.book', name='book')
+    url(r'^search/$', 'ticket.views.book', name='book'),
+    url(r'^reservation/',
+        include('reservation.urls', namespace='reservation')),
+    url(r'^accounts/login/$', 'users.views.signin'),
+
+    # URL for ajax request
+    url(r'^ajax/theaters/$',
+        'reservation.views.ajax_theaters', name='ajax-theaters'),
+    url(r'^ajax/schedules/$',
+        'reservation.views.ajax_schedules', name='ajax-schedules'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

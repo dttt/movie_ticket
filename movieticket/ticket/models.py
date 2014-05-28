@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 
 from facility.models import CinemaRoom
 from movie.models import Version
 from users.models import CustomUser
+from reservation.models import Reservation
 
 
 class Schedule(models.Model):
@@ -24,6 +26,8 @@ class Schedule(models.Model):
 
 class TicketType(models.Model):
     name = models.CharField("Ten loai ve", max_length=40)
+    price = models.IntegerField("Gia ve", null=True)
+    limit = models.IntegerField("So luong dat", default=10)
 
     def __unicode__(self):
         return self.name
@@ -34,16 +38,17 @@ class TicketType(models.Model):
 
 
 class Ticket(models.Model):
-    price = models.IntegerField("Gia ve")
+    price = models.IntegerField("Gia ve", blank=True, null=True)
     row = models.CharField("Thu tu dong", max_length=2)
     column = models.CharField("Thu tu cot", max_length=2)
-    date_sold = models.DateField("Ngay ban")
     ticket_type = models.ForeignKey(TicketType, verbose_name="Loai ve")
     schedule = models.ForeignKey(Schedule, verbose_name="Ve dat cho")
+    reservation = models.ForeignKey(Reservation, blank=True, null=True)
 
-    def __unicode(self):
-        return self.id
+    def __unicode__(self):
+        return 'Ve %s' % self.id
 
     class Meta:
         verbose_name = "Ve"
         verbose_name_plural = "Cac ve"
+        unique_together = ('schedule', 'column', 'row')

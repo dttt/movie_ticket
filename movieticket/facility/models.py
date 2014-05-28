@@ -28,13 +28,13 @@ class MovieTheater(models.Model):
 
 class CinemaRoom(models.Model):
     name = models.CharField("Tên phòng chiếu", max_length=100)
-    total_row = models.IntegerField("Số dòng ghế của phòng", default=1)
+    total_row = models.CharField("Số dòng ghế của phòng", default="a", max_length=2)
     total_column = models.IntegerField("Số cột ghế của phòng", default=1)
     theater = models.ForeignKey(
         MovieTheater, verbose_name='Rạp mà phòng thuộc về')
 
     def __unicode__(self):
-        return self.name + '-' + self.theater.name
+        return self.name + '-' + self.theater.name + '-%s' % self.id
 
     class Meta:
         verbose_name = "Rạp"

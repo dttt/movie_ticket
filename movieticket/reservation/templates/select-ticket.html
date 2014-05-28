@@ -1,0 +1,42 @@
+{% load ticket_limit %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">Chon ve</div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Loai ve</th>
+                    <th>So luong</th>
+                    <th>Gia ve</th>
+                    <th>Tong tien</th>
+                </tr>
+            </thead>
+            {% for type in ticket_types %}
+                <tr>
+                    <td>
+                        {{ type.name }}
+                    </td>
+                    <td>
+                        <select id="quantity">
+                            {% for i in type.limit|limit %}
+                                <option value="{{ i }}">{{ i }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        {{ type.price }}
+                    </td>
+                    <td id="total">
+
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            Tong cong: <p id="total_cost"></p>
+        </div>
+    </div>
+</div>

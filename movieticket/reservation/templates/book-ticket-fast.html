@@ -1,0 +1,42 @@
+<h2>Dat ve nhanh</h2>
+<form action="{% url 'book' %}">
+    <!-- Chon phim -->
+    {% include 'select-movie.html' with movies=movies only %}
+
+    <!-- Chon rap theo phim -->
+    <div class="input-group">
+        <span class="input-group-addon glyphicon glyphicon-facetime-video"></span>
+        <select class="combobox form-control" id="theater">
+            <option value="">Chon rap</option>
+            {#% include 'datalist.html' with list=movies %#}
+        </select>
+    </div>
+
+    <!-- Chon ngay theo phim va rap -->
+    <div class="input-group">
+        <span class="input-group-addon glyphicon glyphicon-calendar"></span>
+        <select class="combobox form-control" id="date">
+            <option value="">Chon ngay</option>
+        </select>
+    </div>
+    <datalist id="dates">
+        {% include 'datalist.html' with list=dates %}
+    </datalist>
+
+    <!-- Chon ca chieu phim -->
+    <!--
+    <div class="input-group">
+        <span class="input-group-addon glyphicon glyphicon-time"></span>
+        <input list="begin_times" name="begin_time" placeholder="Chon gio chieu" class="form-control">
+    </div>
+    <datalist id="begin_times">
+        {% include 'datalist.html' with list=begin_times %}
+    </datalist>-->
+    <div class="input-group">
+        <span class="input-group-addon glyphicon glyphicon-time"></span>
+        <select class="combobox form-control" id="time">
+            <option value=""></option>
+        </select>
+    </div>
+
+</form>
