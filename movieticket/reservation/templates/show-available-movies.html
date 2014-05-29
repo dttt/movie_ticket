@@ -1,0 +1,7 @@
+<div class="input-group">
+    <span class="input-group-addon glyphicon glyphicon-film"></span>
+    <select class="combobox form-control" id="select-movie">
+        <option value="">Chon phim</option>
+        {% include 'datalist.html' with list=movies %}
+    </select>
+</div>

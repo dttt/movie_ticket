@@ -2,11 +2,13 @@ from django.shortcuts import render, get_object_or_404, redirect, render_to_resp
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib import messages
-from django.http import HttpResponse
+from django.template import RequestContext
 
-from helper.helper import MovieHelper
+from helper.helper import MovieHelper, ScheduleHelper
+from movie.models import Version
 from ticket.models import Schedule, TicketType
 from reservation.models import Reservation
+from facility.models import MovieTheater
 
 
 @login_required
@@ -40,16 +42,33 @@ def select_tickets(request, schedule_id, quantity):
 def select_schedules(request):
     helper = MovieHelper()
     available_movies = helper.get_current()
-    return render(request, 'select-schedules.html', {
+    return render(request, 'select-schedule.html', {
         "movies": available_movies
     })
 
 
 def ajax_theaters(request):
     if request.is_ajax():
-        print "It working, it working"
-        return HttpResponse("You did it!")
+        movie_id = request.GET.get('movie_id', None)
+        movie = Version.objects.get(pk=movie_id)
+        theaters = movie.available_theaters.all()
+        return render_to_response(
+            'show-available-theaters.html',
+            {'theaters': theaters},
+            context_instance=RequestContext(request)
+        )
 
 
 def ajax_schedules(request):
-    pass
+    if request.is_ajax():
+        helper = ScheduleHelper()
+        movie = Version.objects.get(pk=request.GET.get('movie_id', None))
+        theater = MovieTheater.objects.get(
+            pk=request.GET.get('theater_id', None))
+        schedules = helper.get_schedules_by_theater(
+            movie=movie, theater=theater)
+        return render_to_response(
+            'show-available-schedules.html',
+            {'schedules': schedules},
+            context_instance=RequestContext(request)
+        )

@@ -1,0 +1,10 @@
+{% for item in schedules %}
+    <div class="panel panel-default">
+        <div class="panel-heading">{{ item.date }}</div>
+        <div class="panel-body">
+            {% for schedule in item.schedules %}
+            <a href="{% url 'reservation:make' schedule.id %}" class="btn btn-primary">{{ schedule.begin_time|time:"H:i" }}</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}

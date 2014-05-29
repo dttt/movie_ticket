@@ -46,6 +46,7 @@ class ScheduleHelper(object):
             movie=movie,
             room__theater=theater,
         ).distinct('date')
+        print theater
         result = []
         for schedule in schedules:
             temp = {}

@@ -1,7 +1,7 @@
 <h2>Dat ve nhanh</h2>
 <form action="{% url 'book' %}">
     <!-- Chon phim -->
-    {% include 'select-movie.html' with movies=movies only %}
+    {% include 'show-available-movies.html' with movies=movies only %}
 
     <!-- Chon rap theo phim -->
     <div class="input-group">
