@@ -41,12 +41,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         unique=True,
     )
 
-    name = models.CharField("Ten", max_length=100)
-    address = models.CharField("Dia chi", max_length=255, blank=True)
-    card_id = models.CharField("CMND hoac bang lai", max_length=20)
-    tel = models.CharField("So dien thoai", max_length=20)
-    date_of_birth = models.DateField("Ngay sinh", null=True)
-    date_joined = models.DateTimeField("Ngay lap", default=timezone.now())
+    name = models.CharField("Tên", max_length=100)
+    address = models.CharField("Địa chỉ", max_length=255, blank=True)
+    card_id = models.CharField("CMND", max_length=20)
+    tel = models.CharField("Số điện thoại", max_length=20)
+    date_of_birth = models.DateField("Ngày sinh", null=True)
+    date_joined = models.DateTimeField("Ngày lập", default=timezone.now())
 
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)

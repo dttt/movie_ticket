@@ -91,9 +91,9 @@ class Movie(models.Model):
     # One to many
     company = models.ForeignKey(Company, verbose_name="Công ty sản xuất")
     MPAA = models.ForeignKey(MPAA)
-    director = models.ForeignKey(Director, verbose_name="Dao dien")
+    director = models.ForeignKey(Director, verbose_name="Đạo diễn")
     # Many to many
-    actors = models.ManyToManyField(Actor, verbose_name="Cac dien vien")
+    actors = models.ManyToManyField(Actor, verbose_name="Các diễn viên")
     genre = models.ManyToManyField(Genre, verbose_name="Thể loại")
 
     def __unicode__(self):
@@ -106,7 +106,7 @@ class Movie(models.Model):
 
     class Meta:
         verbose_name = "Phim"
-        verbose_name_plural = "Các Phim"
+        verbose_name_plural = "Các phim"
 
 
 class Version(models.Model):
@@ -117,7 +117,7 @@ class Version(models.Model):
     movie = models.ForeignKey(Movie, verbose_name="Tên phim")
     slug = models.SlugField(max_length=110, unique=True, blank=True)
     available_theaters = models.ManyToManyField(
-        MovieTheater, blank=True, verbose_name="Cac cum rap dang chieu")
+        MovieTheater, blank=True, verbose_name="Các cụm rạp chiếu")
 
     def __unicode__(self):
         return "%s (%s)" % (self.movie, self.presentation)
@@ -131,6 +131,6 @@ class Version(models.Model):
         return reverse('movie:show-version', args=(self.slug,))
 
     class Meta:
-        verbose_name = "Phien ban"
-        verbose_name_plural = "Cac phien ban"
+        verbose_name = "Phiên bản"
+        verbose_name_plural = "Các phiên bản"
         unique_together = ('movie', 'presentation')

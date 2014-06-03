@@ -11,16 +11,16 @@
                 <h3 class="panel-title">Thong tin phim</h3>
             </div>
             <div class="panel-body">
-                <p><b>Do dai: </b>{{ movie.length }} phut</p>
-                <p><b>Dao dien: </b>{{ movie.director }}</p>
-                <p><b>The loai: </b>
+                <p><b>Độ dài: </b>{{ movie.length }} phút</p>
+                <p><b>Đạo diễn: </b>{{ movie.director }}</p>
+                <p><b>Thể loại: </b>
                     {% include 'list.html' with list=movie.genre.all %}
                 </p>
-                <p><b>Dien vien: </b>
+                <p><b>Các diễn viên: </b>
                     {% include 'list.html' with list=movie.actors.all %}
                 </p>
-                <p><b>Hang san xuat: </b>{{ movie.company }}</p>
-                <p><b>Cum rap: </b>
+                <p><b>Hãng sản xuất: </b>{{ movie.company }}</p>
+                <p><b>Cụm rạp chiếu: </b>
                     {% include 'list.html' with list=version.available_theaters.all %}
                 </p>
             </div>
@@ -30,7 +30,7 @@
         <!-- Tom tat -->
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Tom tat</h3>
+                <h3 class="panel-title">Tóm tắt nội dung</h3>
             </div>
             <div class="panel-body">{{ movie.summary }}</div>
         </div>

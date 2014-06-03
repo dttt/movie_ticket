@@ -1,15 +1,15 @@
 {% load ticket_limit %}
 
 <div class="panel panel-default">
-    <div class="panel-heading">Chon ve</div>
+    <div class="panel-heading">Chọn vé</div>
     <div class="panel-body">
         <table class="table">
             <thead>
                 <tr>
-                    <th>Loai ve</th>
-                    <th>So luong</th>
-                    <th>Gia ve</th>
-                    <th>Tong tien</th>
+                    <th>Loại vé</th>
+                    <th>Số lượng</th>
+                    <th>Gía vé</th>
+                    <th>Tổng tiền</th>
                 </tr>
             </thead>
             {% for type in ticket_types %}
@@ -18,7 +18,7 @@
                         {{ type.name }}
                     </td>
                     <td>
-                        <select id="quantity">
+                        <select class="quantity" id='type_{{ type.id }}' data-id="{{ type.id }}">
                             {% for i in type.limit|limit %}
                                 <option value="{{ i }}">{{ i }}</option>
                             {% endfor %}
@@ -36,7 +36,7 @@
     </div>
     <div class="panel-footer clearfix">
         <div class="pull-right">
-            Tong cong: <p id="total_cost"></p>
+            Tổng cộng: <p id="total_cost"></p>
         </div>
     </div>
 </div>

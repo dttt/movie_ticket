@@ -10,11 +10,11 @@ class MovieTheater(models.Model):
     open_time = models.TimeField("Giờ mở cửa")
     close_time = models.TimeField("Giờ đóng cửa")
     latitude = models.DecimalField(
-        "Hoanh do goole map", blank=True, null=True,
+        "Hoành độ google-map", blank=True, null=True,
         max_digits=11, decimal_places=6
     )
     longtitude = models.DecimalField(
-        "Tung do google map", blank=True, null=True,
+        "Tung độ google-maps", blank=True, null=True,
         max_digits=11, decimal_places=6
     )
 
@@ -28,7 +28,8 @@ class MovieTheater(models.Model):
 
 class CinemaRoom(models.Model):
     name = models.CharField("Tên phòng chiếu", max_length=100)
-    total_row = models.CharField("Số dòng ghế của phòng", default="a", max_length=2)
+    total_row = models.CharField(
+        "Số dòng ghế của phòng", default="a", max_length=2)
     total_column = models.IntegerField("Số cột ghế của phòng", default=1)
     theater = models.ForeignKey(
         MovieTheater, verbose_name='Rạp mà phòng thuộc về')

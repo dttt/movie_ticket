@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 
-{% block title_text %}Chon lich chieu{% endblock %}
+{% block title_text %}Chọn lịch chiếu{% endblock %}
 {% block main_content %}
     <div class="col-md-4 col-lg-4">
-        <h2>Chon phim</h2>
+        <h2>Chọn phim</h2>
         <div id="movies">
             {% include 'show-available-movies.html' with movies=movies only %}
         </div>
     </div>
     <div class="col-md-4 col-lg-4">
-        <h2>Chon rap</h2>
+        <h2>Chọn rạp</h2>
         <div id="theaters"></div>
     </div>
     <div class="col-md-4 col-lg-4">
-        <h2>Chon thoi gian</h2>
+        <h2>Chọn thời gian</h2>
         <div id="schedules"></div>
     </div>
 {% endblock %}

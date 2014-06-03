@@ -1,4 +1,4 @@
-<h2>Dat ve nhanh</h2>
+<h2>Đặt vé nhanh</h2>
 <form action="{% url 'book' %}">
     <!-- Chon phim -->
     {% include 'show-available-movies.html' with movies=movies only %}
@@ -7,7 +7,7 @@
     <div class="input-group">
         <span class="input-group-addon glyphicon glyphicon-facetime-video"></span>
         <select class="combobox form-control" id="theater">
-            <option value="">Chon rap</option>
+            <option value="">Chọn rạp</option>
             {#% include 'datalist.html' with list=movies %#}
         </select>
     </div>
@@ -16,7 +16,7 @@
     <div class="input-group">
         <span class="input-group-addon glyphicon glyphicon-calendar"></span>
         <select class="combobox form-control" id="date">
-            <option value="">Chon ngay</option>
+            <option value="">Chọn ngày</option>
         </select>
     </div>
     <datalist id="dates">
