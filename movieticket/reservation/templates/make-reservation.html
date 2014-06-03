@@ -2,15 +2,11 @@
 {% block title_text %}{{ schedule.movie }}{% endblock %}
 {% block main_content %}
     <div class="col-md-4">{% include 'schedule.html' with schedule=schedule %}</div>
-    <div class="col-md-8">
+    <div class="col-md-8" id="seat-map">
         {% include 'reservation-reminder.html' with user=user %}
         {% include 'select-ticket.html' %}
         <div class="pull-right">
-            <form method="post">
-                <input type="hidden" value='0' name="quantity">
-                {% csrf_token %}
-                <input type="submit" value="Chọn ghế" class="btn btn-primary" />
-            </form>
+            <a href="#" class="btn btn-primary" id="select-seats">Chọn ghế</a>
             <!--
             <a href="{#% url 'reservation:select-tickets' schedule.id %#}" class="btn btn-primary">Chọn ghế</a>-->
         </div>

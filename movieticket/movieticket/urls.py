@@ -29,6 +29,8 @@ urlpatterns = patterns('',
         'reservation.views.ajax_theaters', name='ajax-theaters'),
     url(r'^ajax/schedules/$',
         'reservation.views.ajax_schedules', name='ajax-schedules'),
+    url(r'^ajax/seats/$',
+        'reservation.views.ajax_seats', name="ajax-seats"),
 )
 
 urlpatterns += staticfiles_urlpatterns()

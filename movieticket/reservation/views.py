@@ -1,8 +1,12 @@
-from django.shortcuts import render, get_object_or_404, redirect, render_to_response
+from django.shortcuts import (
+    render, get_object_or_404, redirect, render_to_response
+)
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.template import RequestContext
+from django.http import HttpResponse
+import json
 
 from helper.helper import MovieHelper, ScheduleHelper
 from movie.models import Version
@@ -34,9 +38,14 @@ def make(request, schedule_id):
     })
 
 
-@login_required
-def select_tickets(request, schedule_id, quantity):
-    pass
+def ajax_seats(request):
+    if request.is_ajax():
+        tickets = json.loads(request.GET.get('tickets', None))
+        return render_to_response(
+            'seat-map.html',
+            {'tickets': tickets},
+            context_instance=RequestContext(request)
+        )
 
 
 def select_schedules(request):

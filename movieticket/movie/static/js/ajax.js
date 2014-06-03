@@ -31,7 +31,7 @@ function ajax_schedules() {
     var movie_id = $('#select-movie').val();
     $.ajax({
         type: "GET",
-        url: "/ajax/schedules",
+        url: "/ajax/schedules/",
         data: {"movie_id": movie_id, "theater_id": theater_id},
     })
     .done(function(data) {
@@ -51,4 +51,24 @@ function replace_content(selector, content) {
 function reset_selects() {
     $("#theaters").html('');
     $("#schedules").html('');
+}
+
+// Ajax function for select seats
+
+$(document).on("click", "#select-seats", function(){
+    ajax_seats();
+});
+
+function ajax_seats() {
+    $.ajax({
+        type: "GET",
+        url: "/ajax/seats/",
+        data: {"tickets": JSON.stringify(tickets)},
+    })
+    .done(function(data){
+        alert(data);
+    })
+    .fail(function(){
+        alert("dafs");
+    })
 }

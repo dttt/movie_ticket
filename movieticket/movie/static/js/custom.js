@@ -6,6 +6,7 @@ $(document).ready(function() {
     ajax_theaters();
     ajax_schedules();
     quantity = $('select[class="quantity"]').val();
+    get_tickets();
 });
 
 // Event for select tickets
@@ -17,6 +18,6 @@ function get_tickets() {
     var element = $('select[class="quantity"]');
     var quantity = element.val();
     var type_id = element.attr('id');
-    tickets.type_id = {"id": element.attr('data-id'), "quantity": quantity};
-    alert(tickets);
+    var total = 0;
+    tickets[type_id] = {"id": element.attr('data-id'), "quantity": quantity};
 }

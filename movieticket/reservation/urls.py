@@ -11,6 +11,4 @@ urlpatterns = patterns('',
         'reservation.views.select_schedules', name='select-schedules'),
     url(r'^make/(?P<schedule_id>\d+)/$',
         'reservation.views.make', name='make'),
-    url(r'^make/(?P<schedule_id>\d+)/(?P<quantity>\d+)/$',
-        'reservation.views.select_tickets', name='select-tickets'),
 )
