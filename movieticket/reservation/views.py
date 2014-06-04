@@ -5,12 +5,12 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.template import RequestContext
-from django.http import HttpResponse
+#from django.http import HttpResponse
 import json
 
-from helper.helper import MovieHelper, ScheduleHelper
+from helper.helper import MovieHelper, ScheduleHelper, CinemaRoomHelper
 from movie.models import Version
-from ticket.models import Schedule, TicketType
+from ticket.models import Schedule, TicketType, Ticket
 from reservation.models import Reservation
 from facility.models import MovieTheater
 
@@ -40,10 +40,27 @@ def make(request, schedule_id):
 
 def ajax_seats(request):
     if request.is_ajax():
+        #helper = CinemaRoomHelper()
+        schedule = Schedule.objects.get(
+            pk=request.GET.get('schedule_id', None))
+
+        # Get customer tickets
         tickets = json.loads(request.GET.get('tickets', None))
+
+        booked_tickets = Ticket.objects.filter(
+            reservation__isnull=True,
+            schedule=schedule,
+        )
+        print booked_tickets
+
+        for key in tickets:
+            type_id = tickets[key]['id']
+            tickets[key]['object'] = TicketType.objects.get(pk=type_id)
+
         return render_to_response(
-            'seat-map.html',
-            {'tickets': tickets},
+            'choice-seats.html',
+            {'tickets': tickets, 'schedule': schedule,
+                'booked_tickets': booked_tickets},
             context_instance=RequestContext(request)
         )
 
@@ -72,10 +89,13 @@ def ajax_schedules(request):
     if request.is_ajax():
         helper = ScheduleHelper()
         movie = Version.objects.get(pk=request.GET.get('movie_id', None))
+
         theater = MovieTheater.objects.get(
             pk=request.GET.get('theater_id', None))
+
         schedules = helper.get_schedules_by_theater(
             movie=movie, theater=theater)
+
         return render_to_response(
             'show-available-schedules.html',
             {'schedules': schedules},

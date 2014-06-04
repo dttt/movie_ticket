@@ -1,0 +1,14 @@
+{% load ticket_template %}
+<table class="table">
+    <tbody>
+    {% for r in schedule.room.total_row|get_anphabet %}
+        <tr>
+            <td> {{ r }} </td>
+            {% for c in schedule.room.total_column|get_range %}
+                <td><span class="glyphicon glyphicon-unchecked ticket" data-row="{{ r }}" data-column="{{ c }}" data-status="1"></span></td>
+            {% endfor %}
+            <td> {{ r }} </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

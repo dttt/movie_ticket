@@ -60,12 +60,26 @@ class ScheduleHelper(object):
         return result
 
 
+class CinemaRoomHelper(object):
+
+    def get_total_seats(self, room):
+        helper = MiscHelper()
+        rows = room.total_row
+        columns = room.total_column
+        total = 0
+
+        for rows in helper.get_alphabet(rows):
+            total += columns
+
+        return total
+
+
 class MiscHelper(object):
 
     def get_alphabet(self, max_chr):
         alphabet = [chr(i) for i in range(ord('a'), ord(max_chr) + 1)]
         return alphabet
 
-    def get_ticket_limit(self):
-        limit = [i for i in range(1, 11)]
+    def get_range(self, value):
+        limit = [i for i in range(1, value + 1)]
         return limit

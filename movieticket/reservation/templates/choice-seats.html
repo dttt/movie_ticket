@@ -1,0 +1,11 @@
+<h2>Bạn đã chọn:</h2>
+
+{% for item, s in tickets.items %}
+    <p>Loại vé: {{ s.object.name }}</p>
+    <p>Số lượng: {{ s.quantity }}</p>
+{% endfor %}
+
+{% include 'seating-map.html' %}
+<div class="pull-right">
+    <a href="#" id="finish" class="btn btn-primary">Hoàn tất đặt vé</a>
+</div>

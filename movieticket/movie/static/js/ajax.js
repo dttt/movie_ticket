@@ -60,13 +60,18 @@ $(document).on("click", "#select-seats", function(){
 });
 
 function ajax_seats() {
+    var schedule_id = $('#schedule-id').attr('data-id');
     $.ajax({
         type: "GET",
         url: "/ajax/seats/",
-        data: {"tickets": JSON.stringify(tickets)},
+        data: {
+            "tickets": JSON.stringify(tickets),
+            "schedule_id": schedule_id,
+        },
     })
     .done(function(data){
-        alert(data);
+        //alert(data);
+        replace_content("#seat-map", data)
     })
     .fail(function(){
         alert("dafs");

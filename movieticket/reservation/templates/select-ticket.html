@@ -1,4 +1,4 @@
-{% load ticket_limit %}
+{% load ticket_template %}
 
 <div class="panel panel-default">
     <div class="panel-heading">Chọn vé</div>
@@ -19,7 +19,7 @@
                     </td>
                     <td>
                         <select class="quantity" id='type_{{ type.id }}' data-id="{{ type.id }}">
-                            {% for i in type.limit|limit %}
+                            {% for i in type.limit|get_range %}
                                 <option value="{{ i }}">{{ i }}</option>
                             {% endfor %}
                         </select>
