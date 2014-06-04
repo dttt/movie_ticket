@@ -5,10 +5,12 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.template import RequestContext
+from django.template.response import TemplateResponse
+#from djpjax import pjax
 #from django.http import HttpResponse
 import json
 
-from helper.helper import MovieHelper, ScheduleHelper, CinemaRoomHelper
+from helper.helper import MovieHelper, ScheduleHelper
 from movie.models import Version
 from ticket.models import Schedule, TicketType, Ticket
 from reservation.models import Reservation
@@ -38,31 +40,74 @@ def make(request, schedule_id):
     })
 
 
+@login_required
+def finish(request):
+    if request.method == "POST":
+        positions_json = request.POST.get('positions', None)
+        schedule_id = request.POST.get('schedule_id', None)
+
+        if positions_json and schedule_id:
+            booked_tickets = []
+            # Save user's selected to session for reselect
+            request.session['positions'] = positions_json
+            request.session['schedule_id'] = schedule_id
+
+            # Create new reservation
+            reservation = Reservation(customer=request.user)
+            reservation.save()
+
+            positions = json.loads(positions_json)
+            for position in positions:
+                print position[0]
+                print position[1]
+                ticket = Ticket.objects.get(
+                    row=position[0],
+                    column=position[1],
+                    schedule__id=schedule_id,
+                )
+                ticket.reservation = reservation
+                ticket.save()
+                booked_tickets.append(ticket)
+
+            return render(request, 'final-step.html', {
+                'booked_tickets': booked_tickets,
+                'schedule': Schedule.objects.get(pk=schedule_id),
+                }
+            )
+
+
 def ajax_seats(request):
     if request.is_ajax():
-        #helper = CinemaRoomHelper()
-        schedule = Schedule.objects.get(
-            pk=request.GET.get('schedule_id', None))
+        schedule_id_input = request.POST.get('schedule_id', None)
+        tickets_input = request.POST.get('tickets', None)
 
-        # Get customer tickets
-        tickets = json.loads(request.GET.get('tickets', None))
+        if schedule_id_input and tickets_input:
+            schedule = Schedule.objects.get(pk=schedule_id_input)
+            tickets = json.loads(tickets_input)
 
-        booked_tickets = Ticket.objects.filter(
-            reservation__isnull=True,
-            schedule=schedule,
-        )
-        print booked_tickets
+            booked_tickets = Ticket.objects.filter(
+                reservation__isnull=False,
+                schedule=schedule,
+            )
 
-        for key in tickets:
-            type_id = tickets[key]['id']
-            tickets[key]['object'] = TicketType.objects.get(pk=type_id)
+            booked_positions = [
+                (ticket.row, ticket.column) for ticket in booked_tickets]
+            #booked_columns = [ticket.column for ticket in booked_tickets]
 
-        return render_to_response(
-            'choice-seats.html',
-            {'tickets': tickets, 'schedule': schedule,
-                'booked_tickets': booked_tickets},
-            context_instance=RequestContext(request)
-        )
+            print booked_positions
+            #print booked_columns
+
+            for key in tickets:
+                type_id = tickets[key]['id']
+                tickets[key]['object'] = TicketType.objects.get(pk=type_id)
+
+            return TemplateResponse(request, 'choice-seats.html', {
+                'tickets': tickets,
+                'schedule': schedule,
+                #'booked_rows': booked_rows,
+                #'booked_columns': booked_columns},
+                'booked_positions': booked_positions},
+            )
 
 
 def select_schedules(request):
@@ -101,3 +146,7 @@ def ajax_schedules(request):
             {'schedules': schedules},
             context_instance=RequestContext(request)
         )
+
+
+def ajax_finish(request):
+    pass

@@ -1,14 +1,21 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
 {% block title_text %}{{ schedule.movie }}{% endblock %}
+
 {% block main_content %}
     <div class="col-md-4">{% include 'schedule.html' with schedule=schedule %}</div>
-    <div class="col-md-8" id="seat-map">
+    <div class="col-md-8" id="ajax-container">
         {% include 'reservation-reminder.html' with user=user %}
         {% include 'select-ticket.html' %}
         <div class="pull-right">
-            <a href="#" class="btn btn-primary" id="select-seats">Chọn ghế</a>
-            <!--
-            <a href="{#% url 'reservation:select-tickets' schedule.id %#}" class="btn btn-primary">Chọn ghế</a>-->
+            {% csrf_token %}
+            <a href="javascript:void(0);" class="btn btn-primary" id="select-seats">Chọn ghế</a>
         </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static "js/jquery.cookie.js" %}"></script>
 {% endblock %}

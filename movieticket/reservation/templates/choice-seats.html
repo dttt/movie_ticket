@@ -1,11 +1,19 @@
-<h2>Bạn đã chọn:</h2>
-
+Cac ve da chon
 {% for item, s in tickets.items %}
-    <p>Loại vé: {{ s.object.name }}</p>
-    <p>Số lượng: {{ s.quantity }}</p>
+    <div class="ticket_type" data-quantity="{{ s.quantity }}" data-id="{{ s.object.id }}">
+        <p>Loại vé: {{ s.object.name }}</p>
+        <p>Số lượng: {{ s.quantity }}</p>
+    </div>
 {% endfor %}
 
 {% include 'seating-map.html' %}
+
 <div class="pull-right">
-    <a href="#" id="finish" class="btn btn-primary">Hoàn tất đặt vé</a>
+    <form id="finish" action="{% url 'reservation:finish' %}" method="POST">
+        <input type="hidden" value="" name="positions">
+        <input type="hidden" value="" name="schedule_id">
+        <input type="submit" value="Hoan tat dat ve" class="btn btn-primary">
+        <a href="" class="btn btn-danger">Quay lai chon ve</a>
+        {% csrf_token %}
+    </form>
 </div>

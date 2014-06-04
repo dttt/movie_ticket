@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'ckeditor',
     'ticket',
     'reservation',
+    'djpjax',
 )
 
 SITE_ID = 1

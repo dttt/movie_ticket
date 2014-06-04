@@ -1,14 +1,30 @@
-{% load ticket_template %}
+{% load reservation_tags %}
+<div class="table-responsive">
 <table class="table">
     <tbody>
     {% for r in schedule.room.total_row|get_anphabet %}
         <tr>
             <td> {{ r }} </td>
             {% for c in schedule.room.total_column|get_range %}
-                <td><span class="glyphicon glyphicon-unchecked ticket" data-row="{{ r }}" data-column="{{ c }}" data-status="1"></span></td>
+                {#% for ticket in booked_tickets %#}
+                    {#% if ticket.row == r and ticket.column == c %#}
+                    <!--
+                        <td><span class="glyphicon glyphicon-check booked-ticket" data-row="{#{ r }#}" data-column="{#{ c }#}"></span></td>-->
+                    {#% else %#}
+                    <!--
+                        <td><a class="glyphicon glyphicon-unchecked ticket" data-row="{#{ r }#}" data-column="{#{ c }#}" href="javascript:void(0);"></a></td>-->
+                    {#% endif %#}
+                {#% endfor %#}
+                {{ booked_positions }}
+                {% if r in booked_positions %}
+
+                    {{r}}{{c}}
+
+                {% endif %}
             {% endfor %}
             <td> {{ r }} </td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
+</div>

@@ -81,5 +81,5 @@ class MiscHelper(object):
         return alphabet
 
     def get_range(self, value):
-        limit = [i for i in range(1, value + 1)]
+        limit = [str(i) for i in range(1, value + 1)]
         return limit

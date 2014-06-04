@@ -11,4 +11,5 @@ urlpatterns = patterns('',
         'reservation.views.select_schedules', name='select-schedules'),
     url(r'^make/(?P<schedule_id>\d+)/$',
         'reservation.views.make', name='make'),
+    url(r'^reservation/finish/$', 'reservation.views.finish', name='finish'),
 )

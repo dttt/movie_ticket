@@ -54,16 +54,21 @@ function reset_selects() {
 }
 
 // Ajax function for select seats
-
 $(document).on("click", "#select-seats", function(){
     ajax_seats();
 });
 
 function ajax_seats() {
     var schedule_id = $('#schedule-id').attr('data-id');
+    var csrftoken = $.cookie('csrftoken');
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "/ajax/seats/",
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        },
         data: {
             "tickets": JSON.stringify(tickets),
             "schedule_id": schedule_id,
@@ -71,9 +76,37 @@ function ajax_seats() {
     })
     .done(function(data){
         //alert(data);
-        replace_content("#seat-map", data)
+        replace_content("#ajax-container", data);
     })
     .fail(function(){
         alert("dafs");
-    })
+    });
 }
+
+/*
+$(document).on('click', 'a[name="finish"]', function(){
+    var selected = document.getElementsByClassName('selected');
+    var selected_positions = [];
+    var schedule_id = $('#schedule-id').attr('data-id');
+    var csrftoken = $.cookie('csrftoken');
+
+    for (var i = 0; i < selected.length; i++) {
+        var position = []
+        position[0] = selected[i].getAttribute('data-row');
+        position[1] = selected[i].getAttribute('data-column');
+        selected_positions.push(position);
+    }
+    $.ajax({
+        url: '/ajax/finish/',
+        type: "POST",
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        },
+        data: {
+            "positions": JSON.stringify(selected_positions),
+            "schedule_id": schedule_id,
+        },
+    });
+});*/

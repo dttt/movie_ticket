@@ -16,3 +16,11 @@ def get_range(value):
 def get_anphabet(value):
     helper = MiscHelper()
     return helper.get_alphabet(value)
+
+
+@register.filter(name="check_in")
+def check_in(value, _list):
+    if value in _list:
+        return True
+    else:
+        return False

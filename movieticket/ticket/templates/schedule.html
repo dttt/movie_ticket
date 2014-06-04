@@ -6,3 +6,4 @@
     <p>Ngày chiếu: {{ schedule.date }}</p>
     <p>Giờ bắt đầu: {{ schedule.begin_time|time:"H:i" }}</p>
 </div>
+<a href="{% url 'reservation:select-schedules' %}" class="btn btn-danger">Quay lai</a>
