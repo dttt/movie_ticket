@@ -3,13 +3,14 @@
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
+from django.db import transaction
 
 from helper.misc import Message
-
 from users.forms import SignUpForm, LoginForm
 from users.models import CustomUser
 
 
+@transaction.atomic
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)

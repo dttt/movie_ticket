@@ -24,3 +24,19 @@ def check_in(value, _list):
         return True
     else:
         return False
+
+
+@register.filter(name="create_tuple")
+def create_tuple(r, c):
+    return "%s %s" % (r, c)
+
+
+@register.inclusion_tag('seat.html')
+def seat_classes(booked_positions, r, c):
+    booked = False
+    for b_r, b_c in booked_positions:
+        if b_r == r and b_c == c:
+            booked = True
+            break
+
+    return {'booked': booked, 'r': r, 'c': c}

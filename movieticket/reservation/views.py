@@ -6,9 +6,11 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.template import RequestContext
 from django.template.response import TemplateResponse
+from django.db import transaction
 #from djpjax import pjax
 #from django.http import HttpResponse
 import json
+
 
 from helper.helper import MovieHelper, ScheduleHelper
 from movie.models import Version
@@ -41,6 +43,7 @@ def make(request, schedule_id):
 
 
 @login_required
+@transaction.atomic
 def finish(request):
     if request.method == "POST":
         positions_json = request.POST.get('positions', None)
@@ -92,10 +95,6 @@ def ajax_seats(request):
 
             booked_positions = [
                 (ticket.row, ticket.column) for ticket in booked_tickets]
-            #booked_columns = [ticket.column for ticket in booked_tickets]
-
-            print booked_positions
-            #print booked_columns
 
             for key in tickets:
                 type_id = tickets[key]['id']
@@ -104,8 +103,6 @@ def ajax_seats(request):
             return TemplateResponse(request, 'choice-seats.html', {
                 'tickets': tickets,
                 'schedule': schedule,
-                #'booked_rows': booked_rows,
-                #'booked_columns': booked_columns},
                 'booked_positions': booked_positions},
             )
 
