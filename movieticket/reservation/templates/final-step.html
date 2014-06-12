@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block main_content %}
-    You have make a reservation for {{ schedule.movie }}<br>
-    The movie will begin at {{ schedule.begin_time|time:"H:i" }}<br>
-    Your tickets are:
+    <p>Bạn đã đặt vé cho {{ schedule.movie }}</p>
+    <p>Bộ phim sẽ bắt đầu vào lúc {{ schedule.begin_time|time:"H:i" }}</p>
+    <p>Các vé của bạn là:<p>
     {% for ticket in booked_tickets %}
-        {{ ticket }}
+        <p>{{ ticket }}</p>
     {% endfor %}
-    <a href="{% url 'home' %}">Back to home</a>
+    <a href="{% url 'home' %}">Quay về trang chủ</a>
 {% endblock %}

@@ -1,4 +1,4 @@
-Cac ve da chon
+<p>Các vé đã chọn</p>
 {% for item, s in tickets.items %}
     <div class="ticket_type" data-quantity="{{ s.quantity }}" data-id="{{ s.object.id }}">
         <p>Loại vé: {{ s.object.name }}</p>
@@ -13,7 +13,7 @@ Cac ve da chon
         <input type="hidden" value="" name="positions">
         <input type="hidden" value="" name="schedule_id">
         <input type="submit" value="Hoan tat dat ve" class="btn btn-primary">
-        <a href="" class="btn btn-danger">Quay lai chon ve</a>
+        <a href="" class="btn btn-danger">Quay lại chọn vé</a>
         {% csrf_token %}
     </form>
 </div>

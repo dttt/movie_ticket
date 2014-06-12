@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block main_content %}
+    <div class="row">
+        <div class="col-md-4">
+            {% include 'user-info.html' with user=user only %}
+        </div>
+        <div class="col-md-7">
+            {% include 'reservation-history.html' %}
+        </div>
+    </div>
+{% endblock %}

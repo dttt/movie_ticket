@@ -6,3 +6,8 @@ from news.models import New
 def show(request, new_slug):
     new = get_object_or_404(New, slug=new_slug)
     return render(request, 'new.html', {"new": new})
+
+
+def index(request):
+    news = New.objects.all()
+    return render(request, 'news-index.html', {'news': news})

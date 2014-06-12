@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +42,6 @@ INSTALLED_APPS = (
     'south',
     'movie',
     'facility',
-    'users',
     'crispy_forms',
     'floppyforms',
     'news',
@@ -111,6 +111,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-CKEDITOR_UPLOAD_PATH = os.path.abspath(os.path.join(BASE_DIR, '../media_files/uploads'))
+CKEDITOR_UPLOAD_PATH = os.path.abspath(
+    os.path.join(BASE_DIR, '../media_files/uploads'))
 
 LOGIN_URL = 'users:signin'

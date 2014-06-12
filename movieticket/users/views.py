@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.db import transaction
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import password_reset
 
 from helper.misc import Message
 from users.forms import SignUpForm, LoginForm
@@ -68,3 +70,14 @@ def signin(request):
 def signout(request):
     logout(request)
     return redirect(reverse('home'))
+
+
+@login_required
+def profile(request, user_id):
+    user = get_object_or_404(CustomUser, pk=user_id)
+    if user == request.user:
+        return render(request, 'user-profile.html', {'user': user})
+
+
+def reset_password(request):
+    return password_reset(request, 'password-reset.html')

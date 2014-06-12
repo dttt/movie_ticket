@@ -1,0 +1,28 @@
+{% load user_tags %}
+
+{% if user.reservation_set.all %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Ngày đặt</th>
+                <th>Phim đặt</th>
+                <th>Số lượng vé đặt</th>
+                <th>Giá thanh tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in user.reservation_set.all %}
+                <tr>
+                    {% with tickets=reservation.ticket_set.all %}
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ reservation.date }}</td>
+                    <td>{{ tickets|first|get_movie }}</td>
+                    <td>{{ tickets|length }}</td>
+                    <td>{{ reservation.total_cost }}</td>
+                    {% endwith %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

@@ -8,5 +8,7 @@ urlpatterns = patterns('',
 
     url(r'^signup/', 'users.views.signup', name='signup'),
     url(r'^signin/', 'users.views.signin', name='signin'),
-    url(r'^signout/', 'users.views.signout', name='signout')
+    url(r'^signout/', 'users.views.signout', name='signout'),
+    url(r'^(?P<user_id>\d+)/profile/$',
+        'users.views.profile', name='profile'),
 )

@@ -17,7 +17,7 @@ class Schedule(models.Model):
     creator = models.ForeignKey(CustomUser, verbose_name="Nhân viên tạo")
 
     def __unicode__(self):
-        return "Lịch số %s" % self.id
+        return "Lich %s" % self.id
 
     class Meta:
         verbose_name = "Lịch chiếu"
@@ -50,5 +50,5 @@ class Ticket(models.Model):
 
     class Meta:
         verbose_name = "Vé"
-        verbose_name_plural = "Các ves"
+        verbose_name_plural = "Các vé"
         unique_together = ('schedule', 'column', 'row')
