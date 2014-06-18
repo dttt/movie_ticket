@@ -7,5 +7,5 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^(?P<new_slug>[a-zA-Z0-9-]+)/?$', 'news.views.show', name='show'),
-    url(r'^index/$', 'news.views.index', name='index'),
+    url(r'^$', 'news.views.index', name='index'),
 )

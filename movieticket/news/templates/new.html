@@ -5,7 +5,7 @@
 
 {% block main_content %}
     <div class="text-center">
-        <img src="{{ new.image.url }}">
+        <img src="{{ new.image.url }}" alt="{{ new.title }}">
         <h1>{{ new.title }}</h1>
     </div>
     {% autoescape off %}

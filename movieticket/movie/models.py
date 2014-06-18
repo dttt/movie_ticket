@@ -8,55 +8,55 @@ from facility.models import MovieTheater
 
 
 class Genre(models.Model):
-    name = models.CharField("Tên thể loại", max_length=30)
+    name = models.CharField(u"Tên thể loại", max_length=30)
 
     def __unicode__(self):
-        return self.name
+        return u'%s' % self.name
 
     class Meta:
-        verbose_name = "Thể loại"
-        verbose_name_plural = "Các thể loại"
+        verbose_name = u"Thể loại"
+        verbose_name_plural = u"Các thể loại"
 
 
 class Company(models.Model):
-    name = models.CharField("Tên công ty sản xuất", max_length=100)
+    name = models.CharField(u"Tên công ty sản xuất", max_length=100)
 
     def __unicode__(self):
-        return self.name
+        return u'%s' % self.name
 
     class Meta:
-        verbose_name = "Công ty sản xuất"
-        verbose_name_plural = "Các công ty sản xuất"
+        verbose_name = u"Công ty sản xuất"
+        verbose_name_plural = u"Các công ty sản xuất"
 
 
 class Actor(models.Model):
-    name = models.CharField("Tên diễn viên", max_length=100)
+    name = models.CharField(u"Tên diễn viên", max_length=100)
 
     def __unicode__(self):
-        return self.name
+        return u'%s' % self.name
 
     class Meta:
-        verbose_name = "Diễn viên"
-        verbose_name_plural = "Các diễn viên"
+        verbose_name = u"Diễn viên"
+        verbose_name_plural = u"Các diễn viên"
 
 
 class Director(models.Model):
-    name = models.CharField("Tên đạo diễn", max_length=100)
+    name = models.CharField(u"Tên đạo diễn", max_length=100)
 
     def __unicode__(self):
-        return self.name
+        return u'%s' % self.name
 
     class Meta:
-        verbose_name = "Đạo diễn"
-        verbose_name_plural = "Các đạo diễn"
+        verbose_name = u"Đạo diễn"
+        verbose_name_plural = u"Các đạo diễn"
 
 
 class Presentation(models.Model):
-    name = models.CharField("Tên cách chiếu phim", max_length=50)
+    name = models.CharField(u"Tên cách chiếu phim", max_length=50)
     slug = models.SlugField(max_length=20, blank=True)
 
     def __unicode__(self):
-        return self.name
+        return u'%s' % self.name
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -64,40 +64,40 @@ class Presentation(models.Model):
         super(Presentation, self).save()
 
     class Meta:
-        verbose_name = "Cách chiếu phim"
-        verbose_name_plural = "Các cách chiếu phim"
+        verbose_name = u"Cách chiếu phim"
+        verbose_name_plural = u"Các cách chiếu phim"
 
 
 class MPAA(models.Model):
-    name = models.CharField("Tên nhãn", max_length=20)
-    meaning = models.TextField("Ý nghĩa của nhãn")
-    explanation = models.TextField("Giải thích của nhãn")
+    name = models.CharField(u"Tên nhãn", max_length=20)
+    meaning = models.TextField(u"Ý nghĩa của nhãn")
+    explanation = models.TextField(u"Giải thích của nhãn")
 
     def __unicode__(self):
-        return self.name
+        return u'%s' % self.name
 
     class Meta:
-        verbose_name = "MPAA"
+        verbose_name = u"MPAA"
 
 
 class Movie(models.Model):
     """docstring for Movie"""
-    name = models.CharField("Tên phim", max_length=255)
-    trailer = models.TextField("Trailer của phim")
-    poster = models.ImageField("Poster của phim", upload_to="images/posters")
-    summary = models.TextField("Tóm tắt phim")
-    length = models.IntegerField("Độ dài phim")
+    name = models.CharField(u"Tên phim", max_length=255)
+    trailer = models.TextField(u"Trailer của phim")
+    poster = models.ImageField(u"Poster của phim", upload_to=u"images/posters")
+    summary = models.TextField(u"Tóm tắt phim")
+    length = models.IntegerField(u"Độ dài phim")
     slug = models.SlugField(max_length=100, blank=True)
     # One to many
-    company = models.ForeignKey(Company, verbose_name="Công ty sản xuất")
+    company = models.ForeignKey(Company, verbose_name=u"Công ty sản xuất")
     MPAA = models.ForeignKey(MPAA)
-    director = models.ForeignKey(Director, verbose_name="Đạo diễn")
+    director = models.ForeignKey(Director, verbose_name=u"Đạo diễn")
     # Many to many
-    actors = models.ManyToManyField(Actor, verbose_name="Các diễn viên")
-    genre = models.ManyToManyField(Genre, verbose_name="Thể loại")
+    actors = models.ManyToManyField(Actor, verbose_name=u"Các diễn viên")
+    genre = models.ManyToManyField(Genre, verbose_name=u"Thể loại")
 
     def __unicode__(self):
-        return self.name
+        return u'%s' % self.name
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -105,22 +105,22 @@ class Movie(models.Model):
         super(Movie, self).save()
 
     class Meta:
-        verbose_name = "Phim"
-        verbose_name_plural = "Các phim"
+        verbose_name = u"Phim"
+        verbose_name_plural = u"Các phim"
 
 
 class Version(models.Model):
-    begin_date = models.DateField("Ngày bắt đầu chiếu")
-    end_date = models.DateField("Ngày kết thúc chiếu")
+    begin_date = models.DateField(u"Ngày bắt đầu chiếu")
+    end_date = models.DateField(u"Ngày kết thúc chiếu")
     presentation = models.ForeignKey(
-        Presentation, verbose_name="Cách chiếu phim")
-    movie = models.ForeignKey(Movie, verbose_name="Tên phim")
+        Presentation, verbose_name=u"Cách chiếu phim")
+    movie = models.ForeignKey(Movie, verbose_name=u"Tên phim")
     slug = models.SlugField(max_length=110, unique=True, blank=True)
     available_theaters = models.ManyToManyField(
-        MovieTheater, blank=True, verbose_name="Các cụm rạp chiếu")
+        MovieTheater, blank=True, verbose_name=u"Các cụm rạp chiếu")
 
     def __unicode__(self):
-        return "%s (%s)" % (self.movie, self.presentation)
+        return u"%s (%s)" % (self.movie, self.presentation)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -131,6 +131,6 @@ class Version(models.Model):
         return reverse('movie:show-version', args=(self.slug,))
 
     class Meta:
-        verbose_name = "Phiên bản"
-        verbose_name_plural = "Các phiên bản"
+        verbose_name = u"Phiên bản"
+        verbose_name_plural = u"Các phiên bản"
         unique_together = ('movie', 'presentation')

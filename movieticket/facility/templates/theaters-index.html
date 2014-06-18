@@ -5,6 +5,6 @@
 
 {% block main_content %}
     {% for theater in theaters %}
-        {{ theater.name }}
+        {% include 'theater.html' with theater=theater %}
     {% endfor %}
 {% endblock %}

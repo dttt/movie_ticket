@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.template import RequestContext
 from django.template.response import TemplateResponse
-from django.db import transaction
+from django.db import transaction, InternalError
 #from djpjax import pjax
 #from django.http import HttpResponse
 import json
@@ -20,6 +20,7 @@ from facility.models import MovieTheater
 
 
 @login_required
+@transaction.atomic
 def show(request, reservation_id):
     reservation = get_object_or_404(Reservation, pk=reservation_id)
 
@@ -32,6 +33,7 @@ def show(request, reservation_id):
 
 
 @login_required
+@transaction.atomic
 def make(request, schedule_id):
     schedule = get_object_or_404(Schedule, pk=schedule_id)
     ticket_types = TicketType.objects.all()
@@ -60,17 +62,27 @@ def finish(request):
             reservation.save()
 
             positions = json.loads(positions_json)
-            for position in positions:
-                print position[0]
-                print position[1]
-                ticket = Ticket.objects.get(
-                    row=position[0],
-                    column=position[1],
-                    schedule__id=schedule_id,
+            try:
+                with transaction.atomic():
+                    for position in positions:
+                        ticket = Ticket.objects.get(
+                            row=position[0],
+                            column=position[1],
+                            schedule__id=schedule_id,
+                        )
+                        ticket.reservation = reservation
+                        ticket.save()
+                        booked_tickets.append(ticket)
+
+            except InternalError as e:
+                schedule = Schedule.objects.get(pk=schedule_id)
+                ticket_types = TicketType.objects.all()
+                messages.add_message(request, messages.INFO, e.message)
+
+                return render(request, 'make-reservation.html', {
+                    'schedule': schedule,
+                    'ticket_types': ticket_types}
                 )
-                ticket.reservation = reservation
-                ticket.save()
-                booked_tickets.append(ticket)
 
             return render(request, 'final-step.html', {
                 'booked_tickets': booked_tickets,

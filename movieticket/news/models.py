@@ -7,19 +7,19 @@ from django.core.urlresolvers import reverse
 
 class New(models.Model):
     """Chua cac tin moi"""
-    title = models.CharField("Tiêu đề", max_length=255)
-    text = models.TextField("Nội dung")
-    image = models.ImageField("Ảnh đại diện", upload_to=u"images/news")
-    created_at = models.DateTimeField("Ngày tạo", default=timezone.now())
+    title = models.CharField(u"Tiêu đề", max_length=255)
+    text = models.TextField(u"Nội dung")
+    image = models.ImageField(u"Ảnh đại diện", upload_to=u"images/news")
+    created_at = models.DateTimeField(u"Ngày tạo", default=timezone.now())
     slug = models.SlugField(max_length=50, unique=True)
 
     def get_absolute_url(self):
         return reverse('news:show', args=(self.slug,))
 
     def __unicode__(self):
-        return self.title
+        return u'%s' % self.title
 
     class Meta:
         ordering = ['-created_at']
-        verbose_name = "Tin mới"
-        verbose_name_plural = "Các tin mới"
+        verbose_name = u"Tin mới"
+        verbose_name_plural = u"Các tin mới"
