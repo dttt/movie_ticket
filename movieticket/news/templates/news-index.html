@@ -5,8 +5,9 @@
         <div class="text-center">
             <a href="{{ new.get_absolute_url }}">
                 <img src="{{ new.image.url }}" alt="{{ new.title }}"><br>
-                <em>{{ new.title }}</em>
+                <p>Bắt đầu từ {{ new.begin_date|date:'d/m/Y' }} đến {{ new.end_date|date:'d/m/Y' }}</p>
             </a>
+            <p class="divider"></p>
         </div>
     {% endfor %}
 {% endblock %}

@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-md-8 text-center">
+        <h1 >{{ theater.name }}</h1>
+        <img src="{{ theater.image.url }}">
+    </div>
+    <div class="col-md-4">
+        <div class="jumbotron">
+            <p>Địa chỉ: {{ theater.address }}</p>
+            <p>Số điện thoại: {{ theater.tel }}</p>
+        </div>
+        <div id="map">
+            <iframe src="{{ theater.google_map }}"></iframe>
+        </div>
+    </div>
+</div>

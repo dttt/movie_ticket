@@ -12,7 +12,7 @@
     <form id="finish" action="{% url 'reservation:finish' %}" method="POST">
         <input type="hidden" value="" name="positions">
         <input type="hidden" value="" name="schedule_id">
-        <input type="submit" value="Hoan tat dat ve" class="btn btn-primary">
+        <input type="submit" value="Hoàn tất đặt vé" class="btn btn-primary">
         <a href="" class="btn btn-danger">Quay lại chọn vé</a>
         {% csrf_token %}
     </form>

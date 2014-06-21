@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'ckeditor',
     'ticket',
     'reservation',
+    'faq',
     'djpjax',
 )
 

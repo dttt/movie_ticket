@@ -6,9 +6,9 @@ urlpatterns = patterns('',
     # url(r'^$', 'movieticket.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^signup/', 'users.views.signup', name='signup'),
-    url(r'^signin/', 'users.views.signin', name='signin'),
-    url(r'^signout/', 'users.views.signout', name='signout'),
-    url(r'^(?P<user_id>\d+)/profile/$',
+    url(r'^dang-ki/', 'users.views.signup', name='signup'),
+    url(r'^dang-nhap/', 'users.views.signin', name='signin'),
+    url(r'^dang-xuat/', 'users.views.signout', name='signout'),
+    url(r'^(?P<user_id>\d+)/$',
         'users.views.profile', name='profile'),
 )

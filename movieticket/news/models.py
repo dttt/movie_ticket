@@ -12,6 +12,10 @@ class New(models.Model):
     image = models.ImageField(u"Ảnh đại diện", upload_to=u"images/news")
     created_at = models.DateTimeField(u"Ngày tạo", default=timezone.now())
     slug = models.SlugField(max_length=50, unique=True)
+    begin_date = models.DateField(
+        u'Ngày bắt đầu khuyến mãi', default=timezone.now())
+    end_date = models.DateField(
+        u'Ngày kết thúc khuyến mãi', default=timezone.now())
 
     def get_absolute_url(self):
         return reverse('news:show', args=(self.slug,))

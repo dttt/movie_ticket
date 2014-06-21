@@ -1,28 +1,24 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
+from django.core.urlresolvers import reverse
 
 
 class MovieTheater(models.Model):
     """Movie theater model"""
-    name = models.CharField(u"Tên rạp chiếu", max_length=100)
-    address = models.CharField(u"Địa chỉ phòng chiếu", max_length=255)
-    open_time = models.TimeField(u"Giờ mở cửa")
-    close_time = models.TimeField(u"Giờ đóng cửa")
-    latitude = models.DecimalField(
-        u"Hoành độ google-map", blank=True, null=True,
-        max_digits=11, decimal_places=6
-    )
-    longtitude = models.DecimalField(
-        u"Tung độ google-maps", blank=True, null=True,
-        max_digits=11, decimal_places=6
-    )
+    name = models.CharField(u"Tên rạp chiếu", max_length=100, unique=True)
+    address = models.TextField(u"Địa chỉ phòng chiếu", max_length=255)
+    google_map = models.TextField(u"URL google map")
     tel = models.CharField(u"Số điện thoại", max_length=11, default="0")
-    description = models.TextField(u"Miêu tả", default='')
-    image = models.ImageField(u"Ảnh đại diện", upload_to=u"images/theaters", default='')
+    image = models.ImageField(
+        u"Ảnh đại diện", upload_to=u"images/theaters", default='')
+    slug = models.SlugField(max_length=255, unique=True, null=True)
 
     def __unicode__(self):
         return u'%s' % self.name
+
+    def get_absolute_url(self):
+        return reverse('facility:theater-show', args=(self.slug,))
 
     class Meta:
         verbose_name = u"Cụm rạp"

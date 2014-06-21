@@ -83,30 +83,27 @@ function ajax_seats() {
     });
 }
 
-/*
-$(document).on('click', 'a[name="finish"]', function(){
-    var selected = document.getElementsByClassName('selected');
-    var selected_positions = [];
-    var schedule_id = $('#schedule-id').attr('data-id');
-    var csrftoken = $.cookie('csrftoken');
 
-    for (var i = 0; i < selected.length; i++) {
-        var position = []
-        position[0] = selected[i].getAttribute('data-row');
-        position[1] = selected[i].getAttribute('data-column');
-        selected_positions.push(position);
+// Ajax functions for show theater's information
+$(document).on("click", '.show-theater', function(e){
+    var href = $(this).attr('href');
+    if (supported_api()) {
+        window.history.pushState(null, null, href);
+        e.preventDefault();
+
+        $.ajax({
+            type: "GET",
+            url: href,
+        })
+        .done(function(data){
+            replace_content('#theater-info' ,data);
+        })
+        .fail(function(){
+            alert('fail');
+        });
     }
-    $.ajax({
-        url: '/ajax/finish/',
-        type: "POST",
-        beforeSend: function(xhr, settings) {
-            if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
-                xhr.setRequestHeader("X-CSRFToken", csrftoken);
-            }
-        },
-        data: {
-            "positions": JSON.stringify(selected_positions),
-            "schedule_id": schedule_id,
-        },
-    });
-});*/
+});
+
+function supported_api() {
+    return !!(window.history && history.pushState);
+}
