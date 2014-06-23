@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title_text %}Giải đáp thắc mắc{% endblock %}
+{% block main_content %}
+    <div class="row" data-spy="scroll">
+        <nav id="affix-nav" class="sidebar col-md-4">
+            <ul class="nav sidenav" data-spy="affix" data-offset-top="1">
+                {% for topic in topics %}
+                    <li class="active"><a href="#topic_{{ topic.id }}">{{ topic }}</a>
+                        <ul class="nav">
+                            {% for question in topic.question_set.all %}
+                                <li><a href="#question_{{ question.id }}">{{ question }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+        <section id="faq-content" class="col-md-8">
+            {% for topic in topics %}
+                    <article id="topic_{{ topic.id }}">
+                        <h2>{{ topic }}</h2>
+                        {% for question in topic.question_set.all %}
+                            <section id="question_{{ question.id }}">
+                                    <p class="lead">{{ question }}</p>
+                                    <blockquote><p>{{ question.answer }}</p></blockquote>
+                            </section>
+                        {% endfor %}
+                    </article>
+                {% endfor %}
+        </section>
+    </div>
+{% endblock %}

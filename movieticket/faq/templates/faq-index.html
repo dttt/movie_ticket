@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title_text %}Giải đáp thắc mắc{% endblock %}
+{% block body_attr %}data-spy="scroll" data-target="#myScrollspy"{% endblock %}
+{% block main_content %}
+    <div class="row">
+        <div id="myScrollspy" class="col-md-3 col-xs-4">
+            <ul class="nav nav-tabs nav-stacked affix" data-spy="afix" data-offset-top="125">
+                {% for topic in topics %}
+                    <li><a href="#topic_{{ topic.id }}">{{ topic }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="content" class="col-md-9 col-xs-8">
+            {% for topic in topics %}
+                    <article id="topic_{{ topic.id }}">
+                        <h2>{{ topic }}</h2>
+                        {% for question in topic.question_set.all %}
+                            <section id="question_{{ question.id }}">
+                                    <p class="lead">{{ question }}</p>
+                                    <blockquote><p>{{ question.answer }}</p></blockquote>
+                            </section>
+                        {% endfor %}
+                    </article>
+                {% endfor %}
+        </div>
+    </div>
+    <style type="text/css">
+    /* Custom Styles */
+
+</style>
+{% endblock %}
+

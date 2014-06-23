@@ -7,6 +7,8 @@ img {
     height: 400px;
 }
 
+
+/* CSS for responsive video */
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -47,3 +49,31 @@ height: 100%;
 @media only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px), only screen and (max-width: 767px) {
 .flex-video { padding-top: 0; }
 }
+
+
+/* CSS for carousel */
+.carousel-indicators li {
+    background-color: #999;
+    background-color: rgba(70,70,,70,.25);
+}
+
+.carousel-indicators .active {
+    background-color: #444;
+}
+
+.carousel-inner > .item a > img {
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+
+ul.affix {
+        position: fixed;
+        width: 180px;
+    }
+    ul.affix-top {
+        position: static;
+    }
+    ul.affix-bottom {
+        position: absolute;
+    }

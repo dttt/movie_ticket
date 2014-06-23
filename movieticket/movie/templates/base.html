@@ -6,6 +6,7 @@
     <title>{% block title_text %}Cinema{% endblock %}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block meta %}{% endblock %}
     {% block css_link %}
         <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet" media="screen">
         <link rel="stylesheet" href="{% static "css/carousel.css" %}">
@@ -13,7 +14,7 @@
         <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap-combobox.css" %}">
     {% endblock %}
 </head>
-<body>
+<body {% block body_attr %}{% endblock %}>
     <div id="pages">
         <div id="header">
             {% include "header.html" %}

@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Topic
+
+
+def index(request):
+    topics = Topic.objects.all()
+    return render(request, 'faq-index.html', {'topics': topics})

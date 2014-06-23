@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^dat-ve/',
         include('reservation.urls', namespace='reservation')),
     url(r'^accounts/login/$', 'users.views.signin'),
+    url(r'^giai-dap-thac-mac/', include('faq.urls', namespace='faq')),
 
     # URL for ajax request
     url(r'^ajax/theaters/$',
