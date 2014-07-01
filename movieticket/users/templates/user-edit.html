@@ -1,0 +1,6 @@
+{% extends 'signup.html' %}
+{% block title_text %}Chỉnh sửa thông tin{% endblock %}
+{% block main_content %}
+    {{ block.super }}
+    <a href="{% url 'users:edit-password' user.id %}" class="btn btn-primary">Sửa mật khẩu</a>
+{% endblock %}

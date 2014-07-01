@@ -18,10 +18,10 @@
                 </ul>
                 <div class="tab-content">
                     <div id="sectionA" class="tab-pane fade in active">
-                        {% include 'list-movies.html' with movies=current_movies %}
+                        {% include 'list-movies.html' with movies=current_movies query='c_page' container="#sectionA" %}
                     </div>
                     <div id="sectionB" class="tab-pane fade">
-                        {% include 'list-movies.html' with movies=future_movies %}
+                        {% include 'list-movies.html' with movies=future_movies query='f_page' container="#sectionB" %}
                     </div>
                 </div>
             </div>

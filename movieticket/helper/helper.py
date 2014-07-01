@@ -1,4 +1,5 @@
 from django.utils import timezone
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from movie.models import Version
 from ticket.models import Schedule
@@ -20,6 +21,18 @@ class MovieHelper(object):
             begin_date__gt=self.now,
         ).order_by('begin_date')[offset:limit]
         return movies
+
+    def get_page(self, paginator, page):
+        try:
+            result = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            result = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results
+            result = paginator.page(paginator.num_pages)
+
+        return result
 
 
 class ScheduleHelper(object):

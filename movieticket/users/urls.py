@@ -11,4 +11,8 @@ urlpatterns = patterns('',
     url(r'^dang-xuat/', 'users.views.signout', name='signout'),
     url(r'^(?P<user_id>\d+)/$',
         'users.views.profile', name='profile'),
+    url(r'^(?P<user_id>\d+)/sua-thong-tin$',
+        'users.views.edit', name='edit'),
+    url(r'^(?P<user_id>\d+)/sua-mat-khau$',
+        'users.views.edit_password', name='edit-password'),
 )

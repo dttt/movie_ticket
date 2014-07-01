@@ -107,3 +107,25 @@ $(document).on("click", '.show-theater', function(e){
 function supported_api() {
     return !!(window.history && history.pushState);
 }
+
+$(document).on("click", ".paginator", function(){
+    var href = $(this).attr('data-url');
+    var container = $(this).attr('data-container');
+    var query = $(this).attr('data-query');
+
+    $.ajax({
+        type: "GET",
+        url: href,
+        data: {
+            'query': query,
+            'container': container
+        },
+    })
+    .done(function(data){
+        //alert(data);
+        replace_content(container, data);
+    })
+    .fail(function(){
+        alert('fail');
+    });
+});

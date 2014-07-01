@@ -9,3 +9,10 @@ class Message(object):
     EMAIL_PASSWORD_NOT_MATCH = u"Sai email đăng nhập hoặc mật khẩu"
     BEGIN_DATE_END_DATE_NOT_VALID = u"Ngay ket thuc phai hon ngay ban dau"
     CREATE_TICKETS_HELP = u'Create all tickets for schedule.\nParameters is a array of schedule_id "schedule_id schedule_id ..."'
+    EDITED_PASSWORD = u'Sửa mật khẩu thành công'
+    WRONG_PASSWORD = u'Sai mật khẩu'
+    PERMISSION_DENIED = u'Bạn không có quyền vào trang này'
+
+    @staticmethod
+    def welcome(name):
+        return u'Chào mừng %s đã quay lại' % name

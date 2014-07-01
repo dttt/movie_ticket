@@ -2,7 +2,7 @@ var tickets = {}; // JSON object hold all ticket type and their quantity
 
 $(document).ready(function() {
     // Add jquery UI datepicker
-    $('.datepicker').datepicker({ dateFormat: "dd/mm/yy" });
+    $('.datepicker').datepicker({ dateFormat: "yy-mm-dd" });
     $('.combobox').combobox();
     ajax_theaters();
     ajax_schedules();
@@ -75,3 +75,12 @@ $(document).on('submit', 'form', function(e){
     $('input[type="hidden"][name="positions"]').val(JSON.stringify(selected_positions));
     $('input[type="hidden"][name="schedule_id"]').val(schedule_id);
 });
+
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+

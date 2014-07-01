@@ -6,3 +6,19 @@
         </a>
     </div>
 {% endfor %}
+
+<div class="pagination col-md-12">
+    <span class="step-links">
+        {% if movies.has_previous %}
+            <div>
+            <a data-url="?page={{ movies.previous_page_number }}" href="javascript:void(0);" class="paginator" data-container="{{ container }}" data-query="{{ query }}">previous</a>
+            </div>
+        {% endif %}
+
+        {% if movies.has_next %}
+            <div class="pull-right">
+                <a data-url="?page={{ movies.next_page_number }}" href="javascript:void(0);" class="paginator" data-container="{{ container }}" data-query="{{ query }}">next</a>
+            </div>
+        {% endif %}
+    </span>
+</div>

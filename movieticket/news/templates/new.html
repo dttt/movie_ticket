@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title_text %}
-    new.title
+    {{new.title}}
 {% endblock %}
 
 {% block main_content %}
@@ -11,4 +11,7 @@
     {% autoescape off %}
     <p>{{ new.text }}</p>
     {% endautoescape %}
+    <div class="pull-right">
+        <div class="fb-like" data-href="{{ new.get_absolute_url }}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+    </div>
 {% endblock %}
